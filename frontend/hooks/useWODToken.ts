@@ -1,6 +1,6 @@
 'use client';
 
-import { useContractRead, useContractWrite, useWaitForTransaction, useAccount } from 'wagmi';
+import { useReadContract, useWriteContract, useAccount, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther, formatEther } from 'ethers';
 import { WODTokenABI } from '@/abis/WODTokenABI';
 
@@ -10,36 +10,37 @@ export function useWODToken() {
   const { address } = useAccount();
 
   // Ler saldo
-  const balance = useContractRead({
+  const balance = useReadContract({
     address: WOD_TOKEN_ADDRESS as `0x${string}`,
     abi: WODTokenABI,
     functionName: 'balanceOf',
     args: address ? [address] : undefined,
-    enabled: !!address && WOD_TOKEN_ADDRESS !== '0x0',
+    query: {
+      enabled: !!address && WOD_TOKEN_ADDRESS !== '0x0',
+    },
   });
 
   // Aprovar gasto
   const approve = () => {
-    const { data, write, isLoading } = useContractWrite({
-      address: WOD_TOKEN_ADDRESS as `0x${string}`,
-      abi: WODTokenABI,
-      functionName: 'approve',
-    });
-
-    const { isLoading: isConfirming, isSuccess } = useWaitForTransaction({
-      hash: data?.hash,
+    const { writeContract, data: hash, isPending } = useWriteContract();
+    
+    const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
+      hash,
     });
 
     return {
       approve: (spender: string, amount: string) => {
-        if (write) {
-          const amountWei = parseEther(amount);
-          write({ args: [spender as `0x${string}`, amountWei] });
-        }
+        const amountWei = parseEther(amount);
+        writeContract({
+          address: WOD_TOKEN_ADDRESS as `0x${string}`,
+          abi: WODTokenABI,
+          functionName: 'approve',
+          args: [spender as `0x${string}`, amountWei],
+        });
       },
-      isLoading: isLoading || isConfirming,
+      isLoading: isPending || isConfirming,
       isSuccess,
-      hash: data?.hash,
+      hash,
     };
   };
 

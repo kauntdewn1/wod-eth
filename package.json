@@ -8,15 +8,18 @@
   ],
   "scripts": {
     "dev": "cd frontend && npm run dev",
+    "dev:contracts": "cd contracts && npx hardhat node",
+    "dev:full": "echo '⚠️  Use terminais separados: Terminal 1: npm run dev:contracts | Terminal 2: npm run deploy:local | Terminal 3: npm run dev'",
     "build": "cd frontend && npm run build",
     "compile": "cd contracts && npx hardhat compile",
     "deploy:local": "cd contracts && npx hardhat run scripts/deploy.ts --network localhost",
     "deploy:polygon": "cd contracts && npx hardhat run scripts/deploy.ts --network polygon",
-    "test": "cd contracts && npx hardhat test"
+    "test": "cd contracts && npx hardhat test",
+    "install:all": "npm install && cd contracts && npm install && cd ../frontend && npm install"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.0"
   }
 }
-
