@@ -1,0 +1,22 @@
+{
+  "name": "wodx-protocol",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "contracts"
+  ],
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "compile": "cd contracts && npx hardhat compile",
+    "deploy:local": "cd contracts && npx hardhat run scripts/deploy.ts --network localhost",
+    "deploy:polygon": "cd contracts && npx hardhat run scripts/deploy.ts --network polygon",
+    "test": "cd contracts && npx hardhat test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+
