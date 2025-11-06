@@ -1,8 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
-import { createAccountKit } from '@alchemy/aa-alchemy';
+import { useSignerStatus, useUser } from '@account-kit/react';
 import { LoginButton } from '@/components/LoginButton';
 import { ArenaDashboard } from '@/components/ArenaDashboard';
 import { DailyTraining } from '@/components/DailyTraining';
@@ -11,8 +9,8 @@ import { ValidatorDashboard } from '@/components/ValidatorDashboard';
 import { IPFSStatus } from '@/components/IPFSStatus';
 
 export default function Home() {
-  const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
+  const { isConnected } = useSignerStatus();
+  const { user } = useUser();
 
   return (
     <main className="min-h-screen p-8">
@@ -32,14 +30,11 @@ export default function Home() {
             {isConnected ? (
               <div className="flex items-center gap-4">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {address?.slice(0, 6)}...{address?.slice(-4)}
+                  {user?.address ? `${user.address.slice(0, 6)}...${user.address.slice(-4)}` : 'Conectado'}
                 </span>
-                <button
-                  onClick={() => disconnect()}
-                  className="px-4 py-2 bg-gray-200 dark:bg-gray-800 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700"
-                >
-                  Desconectar
-                </button>
+                <span className="text-xs text-gray-500 dark:text-gray-500">
+                  {user?.email || ''}
+                </span>
               </div>
             ) : (
               <LoginButton />
