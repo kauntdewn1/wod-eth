@@ -1,0 +1,15 @@
+✅ DEPLOY PARCIAL - Rede Amoy
+
+Contratos Deployados:
+- WODToken: 0xA6081E450193a9184D9C7dDC9152d8b0aFBD7b8d
+- ValidatorRegistry: 0x3470Ef533399CEAEc3E76B3C0E909aC27b338BA9
+
+❌ Pendente:
+- Arena: Falhou por falta de gas
+
+Status:
+- Saldo inicial: 0.1 POL
+- Saldo atual: ~0.008 POL
+- Necessário: ~0.1 POL para Arena
+
+Próximo passo: Conseguir mais POL ou fazer deploy apenas do Arena
