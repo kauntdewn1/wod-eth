@@ -3,6 +3,7 @@
 ## ✅ Completo
 
 ### 🏗️ **Infraestrutura Base**
+
 - [x] Estrutura de pastas (contracts, frontend, docs)
 - [x] Configuração Hardhat para smart contracts
 - [x] Configuração Next.js 14 com TypeScript
@@ -10,6 +11,7 @@
 - [x] Workspace setup (monorepo)
 
 ### 🔷 **Smart Contracts**
+
 - [x] `WODToken.sol` - Token ERC20 do protocolo
 - [x] `ValidatorRegistry.sol` - Sistema de stake para validadores
 - [x] `Arena.sol` - Contrato principal da Arena
@@ -22,6 +24,7 @@
 - [x] Testes básicos
 
 ### 🎨 **Frontend - Componentes**
+
 - [x] `LoginButton` - Login com Alchemy Account Kit (estrutura)
 - [x] `DailyTraining` - Registro de treinos diários (off-chain)
 - [x] `ArenaDashboard` - Visualização e participação em desafios
@@ -30,15 +33,18 @@
 - [x] `Toast` - Sistema de notificações
 
 ### 🪝 **Hooks Customizados**
+
 - [x] `useArena` - Interação com contrato Arena
 - [x] `useWODToken` - Gerenciamento de saldo $WOD
 - [x] `useToast` - Sistema de notificações
 
 ### 📚 **Bibliotecas e Utilitários**
+
 - [x] `trainingLog.ts` - Sistema de log off-chain
 - [x] `utils.ts` - Funções utilitárias (formatação, validação)
 
 ### 📖 **Documentação**
+
 - [x] README.md principal
 - [x] GETTING_STARTED.md - Guia de início rápido
 - [x] ARQUITETURA_TREINOS.md - Explicação treinos vs desafios
@@ -50,23 +56,27 @@
 ## 🚧 Em Progresso / Parcial
 
 ### 🔐 **Alchemy Account Kit**
+
 - [x] Estrutura base criada
 - [ ] Integração completa com social login (Google/e-mail)
 - [ ] Account Abstraction configurado
 - [ ] Meta-transactions para gasless
 
 ### 💰 **On-Ramp PIX**
+
 - [x] Interface criada
 - [ ] Integração com Alchemy Pay
 - [ ] Processamento de pagamento PIX
 
 ### 🏟️ **Arena - Funcionalidades Avançadas**
+
 - [x] Estrutura básica
 - [ ] Buscar desafios ativos do contrato (atualmente mock)
 - [ ] Listagem de participantes
 - [ ] Status de submissão em tempo real
 
 ### ⚖️ **Validador**
+
 - [x] Dashboard básico
 - [ ] Buscar submissões pendentes do contrato
 - [ ] Sistema de comissões
@@ -77,6 +87,7 @@
 ## 📋 **Próximos Passos Recomendados**
 
 ### Prioridade Alta
+
 1. **Completar Alchemy Account Kit**
    - Configurar social login (Google OAuth)
    - Implementar Account Abstraction

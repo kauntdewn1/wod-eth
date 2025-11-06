@@ -1,12 +1,14 @@
-# WODX Protocol - Oportunidade de Investimento
+# WOD [X] PRO - Oportunidade de Investimento
 
 ## Para Investidores Não-Técnicos
 
+**Domain**: `wod.eth` | **Token**: `$WOD`
+
 ---
 
-## 📋 O Que É o WODX?
+## 📋 O Que É o WOD [X] PRO?
 
-**WODX é a primeira plataforma descentralizada que transforma desempenho físico em valor digital permanente.**
+**WOD [X] PRO é a primeira plataforma descentralizada que transforma desempenho físico em valor digital permanente.**
 
 Imagine: um atleta grava um treino, submete para validação, e ganha tokens ($WOD) se outros atletas validarem que ele realmente fez o exercício. Tudo isso funcionando de forma automática, transparente e sem intermediários.
 
@@ -327,7 +329,8 @@ Atletas e fãs de fitness têm poucas formas de monetizar ou comprovar seu desem
 
 Para mais informações sobre investimento:
 
-- **Email**: [seu-email@wodx.protocol]
+- **Email**: [seu-email@wod.eth]
+- **Domain ENS**: wod.eth
 - **Repositório**: https://github.com/kauntdewn1/wod-eth
 - **Documentação Técnica**: `/docs/ARCHITECTURE.md`
 
@@ -335,7 +338,7 @@ Para mais informações sobre investimento:
 
 ## 🎯 Resumo Executivo
 
-**WODX é o protocolo que transforma esforço físico em valor digital permanente.**
+**WOD [X] PRO é o protocolo que transforma esforço físico em valor digital permanente.**
 
 - ✅ **Problema real**: Atletas não têm como monetizar/comprovar desempenho
 - ✅ **Solução inovadora**: Blockchain + IPFS + Validação descentralizada
@@ -344,7 +347,7 @@ Para mais informações sobre investimento:
 - ✅ **Primeiro mover**: Nenhum competidor direto
 - ✅ **Modelo escalável**: Receita cresce com número de usuários
 
-**Investir em WODX é investir na economia do esforço.**
+**Investir em WOD [X] PRO é investir na economia do esforço.**
 
 ---
 

@@ -21,9 +21,12 @@ export default function Home() {
         <header className="mb-12">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-4xl font-bold mb-2">WODX Protocol</h1>
+              <h1 className="text-4xl font-bold mb-2">WOD [X] PRO</h1>
               <p className="text-gray-600 dark:text-gray-400">
                 Transforme seu desempenho físico em valor digital perpétuo
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                wod.eth • Token: $WOD
               </p>
             </div>
             {isConnected ? (

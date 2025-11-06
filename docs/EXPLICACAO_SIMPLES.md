@@ -1,6 +1,8 @@
-# WODX Protocol - Explicação Simples
+# WOD [X] PRO - Explicação Simples
 
 ## Para Leigos (Sem Jargão Técnico)
+
+**Domain**: `wod.eth` | **Token**: `$WOD`
 
 ---
 
@@ -21,6 +23,7 @@ Imagine uma **corrida de rua** onde:
 5. Se validado, você **ganha parte do pote** (ex: R$ 500)
 
 **A diferença do WODX:**
+
 - ✅ Funciona **online** (não precisa estar no mesmo lugar)
 - ✅ **Automático** (não precisa de organização humana)
 - ✅ **Global** (brasileiro compete com americano)
@@ -34,6 +37,7 @@ Imagine uma **corrida de rua** onde:
 ### 1. Você Participa de Desafios
 
 **Exemplo:**
+
 - Desafio: "100 burpees em 10 minutos"
 - Taxa de entrada: 100 $WOD (≈ R$ 50)
 - 50 pessoas participam = 50 × R$ 50 = **R$ 2.500 no pote**
@@ -42,6 +46,7 @@ Imagine uma **corrida de rua** onde:
 ### 2. Você Valida Outros Atletas
 
 **Exemplo:**
+
 - Você "tranca" 1.000 $WOD (≈ R$ 500) para se tornar validador
 - Você assiste vídeos e aprova/rejeita
 - Recebe **comissão** por cada validação
@@ -50,6 +55,7 @@ Imagine uma **corrida de rua** onde:
 ### 3. Você Investe em Resultados
 
 **Exemplo (Futuro):**
+
 - "Aposto que Maria ganha do João no desafio"
 - Você investe 50 $WOD
 - Se acertar, ganha mais tokens baseado nas "odds"
@@ -61,11 +67,13 @@ Imagine uma **corrida de rua** onde:
 ### O Problema de Apps Normais
 
 **Instagram:**
+
 - Se Instagram fechar, seus vídeos somem ❌
 - Instagram decide o que você vê ❌
 - Você não ganha nada pelo seu conteúdo ❌
 
 **WODX:**
+
 - Seu vídeo fica **para sempre** (armazenado em IPFS) ✅
 - Ninguém pode "desligar" o protocolo ✅
 - Você ganha tokens reais que valem dinheiro ✅
@@ -73,6 +81,7 @@ Imagine uma **corrida de rua** onde:
 ### Blockchain = Livro de Registros Público
 
 Imagine um **livro gigante** que:
+
 - ✅ **Qualquer um pode ler** (transparente)
 - ✅ **Ninguém pode apagar** (permanente)
 - ✅ **Ninguém pode falsificar** (seguro)
@@ -87,23 +96,27 @@ Imagine um **livro gigante** que:
 ### Maria, a CrossFiteira
 
 **Segunda-feira:**
+
 - Maria treina e grava 100 burpees
 - Salva no WODX (gratuito, off-chain)
 - Vídeo vai para IPFS (permanente)
 
 **Terça-feira:**
+
 - Maria vê um desafio: "100 burpees em 10 minutos"
 - Entry fee: 100 $WOD (≈ R$ 50)
 - Maria decide participar
 - Paga com PIX (conversão automática)
 
 **Quarta-feira:**
+
 - Maria submete o vídeo do treino de segunda
 - 5 validadores assistem o vídeo
 - 4 aprovam (80% de aprovação)
 - ✅ Maria ganha!
 
 **Quinta-feira:**
+
 - Maria recebe 500 $WOD (≈ R$ 250) do prize pool
 - Pode trocar por dinheiro, usar em outros desafios, ou guardar
 

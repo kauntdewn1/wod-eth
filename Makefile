@@ -8,7 +8,7 @@ RED := \033[0;31m
 NC := \033[0m # No Color
 
 help: ## Mostra esta mensagem de ajuda
-	@echo "$(BLUE)WODX Protocol - Comandos Disponíveis$(NC)"
+	@echo "$(BLUE)WOD [X] PRO - Comandos Disponíveis$(NC)"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
 	@echo ""
@@ -133,7 +133,7 @@ dev-full: ## Inicia tudo (contratos + frontend) - use em terminais separados
 
 # Status
 status: ## Mostra status do projeto
-	@echo "$(BLUE)📊 Status do Projeto WODX$(NC)"
+	@echo "$(BLUE)📊 Status do Projeto WOD [X] PRO$(NC)"
 	@echo ""
 	@echo "$(BLUE)Contratos:$(NC)"
 	@test -d contracts/artifacts && echo "  ✅ Compilados" || echo "  ❌ Não compilados"

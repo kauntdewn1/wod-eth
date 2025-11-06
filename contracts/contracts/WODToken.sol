@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title WODToken
- * @dev Token ERC20 do protocolo WODX ($WOD)
+ * @dev Token ERC20 do protocolo WOD [X] PRO ($WOD)
  */
 contract WODToken is ERC20, Ownable {
     constructor(address initialOwner) ERC20("WOD Token", "WOD") Ownable(initialOwner) {

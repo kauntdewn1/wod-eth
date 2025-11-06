@@ -6,8 +6,8 @@ import { Providers } from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'WODX Protocol - Performance Descentralizada',
-  description: 'Transforme seu desempenho físico em valor digital perpétuo',
+  title: 'WOD [X] PRO - Performance Descentralizada',
+  description: 'Transforme seu desempenho físico em valor digital perpétuo - wod.eth',
 };
 
 export default function RootLayout({

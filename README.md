@@ -1,8 +1,10 @@
-# WODX Protocol
+# WOD [X] PRO
 
 **Protocolo Descentralizado de Performance Atlética**
 
-O WODX transforma desempenho físico em valor digital perpétuo e auditável através de blockchain.
+O WOD [X] PRO transforma desempenho físico em valor digital perpétuo e auditável através de blockchain.
+
+**Domain**: `wod.eth` | **Token**: `WOD`
 
 ## Arquitetura
 
