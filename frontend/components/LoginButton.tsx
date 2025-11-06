@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useConnect } from 'wagmi';
-import { createAlchemyProvider, isGasManagerEnabled } from '@/lib/alchemyAccountKit';
+import { verifyAlchemyConfig, isGasManagerEnabled } from '@/lib/alchemyAccountKit';
 
 export function LoginButton() {
   const [loading, setLoading] = useState(false);
@@ -11,6 +11,15 @@ export function LoginButton() {
   const handleSocialLogin = async (provider: 'google' | 'email') => {
     setLoading(true);
     try {
+      // Verifica configuração do Alchemy
+      const config = verifyAlchemyConfig();
+      
+      if (!config.valid) {
+        alert(`Configuração incompleta:\n${config.errors.join('\n')}`);
+        setLoading(false);
+        return;
+      }
+
       // Verifica se Gas Manager está configurado
       const hasGasManager = isGasManagerEnabled();
       
@@ -20,18 +29,19 @@ export function LoginButton() {
         console.warn('⚠️ Gas Manager não configurado - usuários pagarão gas fees');
       }
 
-      // TODO: Implementar login social completo com Alchemy
+      // TODO: Implementar login social completo com Alchemy Account Kit
       // A implementação completa requer:
-      // 1. Configurar provider com createAlchemyProvider()
-      // 2. Integrar com Alchemy Account Kit para social login
-      // 3. Conectar wallet via Wagmi
+      // 1. Usar @alchemy/aa-accounts para criar signer social
+      // 2. Criar provider com createLightAccountAlchemyProvider(signer)
+      // 3. Integrar com Wagmi para conectar wallet
+      // 4. Configurar Gas Manager com withAlchemyGasManager
       
       console.log(`Login com ${provider}`);
       console.log('Configuração:', {
         hasGasManager,
         chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
-        apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY ? '✅ Configurada' : '❌ Não configurada',
-        appId: process.env.NEXT_PUBLIC_ALCHEMY_APP_ID ? '✅ Configurada' : '❌ Não configurada',
+        apiKey: '✅ Configurada',
+        appId: '✅ Configurada',
       });
       
       // Por enquanto, apenas verificação de configuração
@@ -39,8 +49,8 @@ export function LoginButton() {
         `Login com ${provider} será implementado em breve.\n\n` +
         `Status:\n` +
         `Gas Manager: ${hasGasManager ? '✅ Ativado' : '⚠️ Desativado'}\n` +
-        `API Key: ${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY ? '✅' : '❌'}\n` +
-        `App ID: ${process.env.NEXT_PUBLIC_ALCHEMY_APP_ID ? '✅' : '❌'}`
+        `API Key: ✅\n` +
+        `App ID: ✅`
       );
     } catch (error) {
       console.error('Login error:', error);
