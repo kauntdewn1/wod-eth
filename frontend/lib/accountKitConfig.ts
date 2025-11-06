@@ -44,6 +44,3 @@ export function getAccountKitConfig() {
   );
 }
 
-// Exportar também uma instância para compatibilidade
-export const accountKitConfig = typeof window !== 'undefined' ? getAccountKitConfig() : null;
-
