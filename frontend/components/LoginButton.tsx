@@ -2,26 +2,45 @@
 
 import { useState } from 'react';
 import { useConnect } from 'wagmi';
-import { createAccountKit } from '@alchemy/aa-alchemy';
+import { getAccountKit, isGasManagerEnabled } from '@/lib/alchemyAccountKit';
 
 export function LoginButton() {
   const [loading, setLoading] = useState(false);
+  const { connect } = useConnect();
 
   const handleSocialLogin = async (provider: 'google' | 'email') => {
     setLoading(true);
     try {
-      // TODO: Implementar Alchemy Account Kit Social Login
-      // const accountKit = createAccountKit({
-      //   chain: {
-      //     id: parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '80001'),
-      //   },
-      //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || '',
-      // });
+      // Configuração do Account Kit com Gas Manager (se Policy ID estiver configurada)
+      const accountKit = getAccountKit();
+      
+      // Gas Manager configurado = transações subsidiadas (usuário não paga gas)
+      // Gas Manager não configurado = usuário paga suas próprias gas fees
+      if (isGasManagerEnabled()) {
+        console.log('✅ Gas Manager ativado - transações serão subsidiadas');
+      } else {
+        console.warn('⚠️ Gas Manager não configurado - usuários pagarão gas fees');
+      }
+
+      // TODO: Implementar login social completo
+      // Para Google: accountKit.connectSocial('google')
+      // Para Email: accountKit.connectSocial('email')
+      // Depois conectar à wallet via Wagmi
       
       console.log(`Login with ${provider}`);
-      alert('Login com Alchemy Account Kit será implementado');
+      console.log('Account Kit configurado:', {
+        hasGasManager: isGasManagerEnabled(),
+        chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
+      });
+      
+      // Por enquanto, apenas log
+      alert(
+        `Login com ${provider} será implementado.\n` +
+        `Gas Manager: ${isGasManagerEnabled() ? '✅ Ativado' : '⚠️ Desativado'}`
+      );
     } catch (error) {
       console.error('Login error:', error);
+      alert(`Erro ao conectar: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
     } finally {
       setLoading(false);
     }
