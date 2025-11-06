@@ -1,4 +1,4 @@
-.PHONY: help install install-contracts install-frontend dev build compile deploy-local deploy-mumbai deploy-polygon test test-contracts clean lint format
+.PHONY: help install install-contracts install-frontend dev build compile deploy-local deploy-mumbai deploy-amoy deploy-amoy-arena deploy-polygon test test-contracts clean lint format
 
 # Cores para output
 BLUE := \033[0;34m
@@ -61,6 +61,16 @@ deploy-mumbai: ## Faz deploy dos contratos no Mumbai (testnet)
 	@echo "$(BLUE)🚀 Fazendo deploy no Mumbai testnet...$(NC)"
 	@echo "$(YELLOW)⚠️  Verifique suas variáveis de ambiente!$(NC)"
 	cd contracts && npm run deploy:polygon
+
+deploy-amoy: ## Faz deploy dos contratos na Amoy testnet
+	@echo "$(BLUE)🚀 Deployando contratos na Amoy testnet...$(NC)"
+	@echo "$(YELLOW)⚠️  Verifique suas variáveis de ambiente!$(NC)"
+	cd contracts && npm run deploy:amoy
+
+deploy-amoy-arena: ## Faz deploy apenas do Arena na Amoy (para completar deploy parcial)
+	@echo "$(BLUE)🚀 Deployando Arena na Amoy...$(NC)"
+	@echo "$(YELLOW)⚠️  Certifique-se de ter POL suficiente (~0.12 POL)$(NC)"
+	cd contracts && npm run deploy:amoy:arena
 
 deploy-polygon: ## Faz deploy dos contratos no Polygon (mainnet)
 	@echo "$(RED)⚠️  ATENÇÃO: Deploy em mainnet!$(NC)"
