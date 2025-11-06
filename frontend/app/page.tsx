@@ -10,7 +10,7 @@ import { IPFSStatus } from '@/components/IPFSStatus';
 
 export default function Home() {
   const { isConnected } = useSignerStatus();
-  const { user } = useUser();
+  const user = useUser();
 
   return (
     <main className="min-h-screen p-8">
@@ -29,12 +29,16 @@ export default function Home() {
             </div>
             {isConnected ? (
               <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {user?.address ? `${user.address.slice(0, 6)}...${user.address.slice(-4)}` : 'Conectado'}
-                </span>
-                <span className="text-xs text-gray-500 dark:text-gray-500">
-                  {user?.email || ''}
-                </span>
+                {user?.account?.address && (
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {user.account.address.slice(0, 6)}...{user.account.address.slice(-4)}
+                  </span>
+                )}
+                {user?.email && (
+                  <span className="text-xs text-gray-500 dark:text-gray-500">
+                    {user.email}
+                  </span>
+                )}
               </div>
             ) : (
               <LoginButton />
