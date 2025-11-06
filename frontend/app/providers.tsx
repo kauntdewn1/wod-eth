@@ -21,7 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AlchemyAccountProvider config={accountKitConfig}>
+      <AlchemyAccountProvider config={accountKitConfig} queryClient={queryClient}>
         {children}
       </AlchemyAccountProvider>
     </QueryClientProvider>
