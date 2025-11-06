@@ -1,8 +1,10 @@
-# Configuração IPFS - WODX Protocol
+# Configuração IPFS - WOD [X] PRO
 
 ## Opções de Provedores
 
-O WODX suporta múltiplos provedores IPFS para armazenamento de vídeos:
+**Domain**: `wod.eth` | **Token**: `$WOD`
+
+O WOD [X] PRO suporta múltiplos provedores IPFS para armazenamento de vídeos:
 
 1. **NFT.Storage** (Recomendado) - Gratuito, IPFS + Filecoin
 2. **Lighthouse** - IPFS com armazenamento perpétuo
