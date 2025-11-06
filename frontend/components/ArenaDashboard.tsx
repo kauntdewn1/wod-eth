@@ -21,7 +21,7 @@ interface Challenge {
 export function ArenaDashboard() {
   const { address } = useAccount();
   const arena = useArena();
-  const { formattedBalance, approve: approveToken } = useWODToken();
+  const { formattedBalance, approveToken } = useWODToken();
   const [challenges, setChallenges] = useState<Challenge[]>([]);
   const [selectedChallenge, setSelectedChallenge] = useState<number | null>(null);
   const [selectedTraining, setSelectedTraining] = useState<string | null>(null);
@@ -95,18 +95,18 @@ export function ArenaDashboard() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+    <div className="bg-arena border border-token/20 rounded-xl shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">🏟️ A Arena</h2>
+        <h2 className="text-2xl font-bold text-protocol">🏟️ A Arena</h2>
         <div className="text-right">
-          <p className="text-sm text-gray-500">Seu saldo</p>
-          <p className="text-xl font-bold text-primary-600">{formattedBalance} $WOD</p>
+          <p className="text-sm text-protocol/60">Seu saldo</p>
+          <p className="text-xl font-bold text-token font-mono">{formattedBalance} $WOD</p>
         </div>
       </div>
 
       <div className="space-y-4">
         {challenges.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
+          <div className="text-center py-12 text-protocol/60">
             <p>Nenhum desafio ativo no momento</p>
             <p className="text-sm mt-2">Novos desafios aparecerão aqui</p>
           </div>
@@ -118,20 +118,20 @@ export function ArenaDashboard() {
             return (
               <div
                 key={challenge.id}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow"
+                className="border border-token/30 rounded-lg p-4 bg-arena hover:shadow-token transition-shadow"
               >
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h3 className="text-xl font-semibold mb-1">{challenge.name}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <h3 className="text-xl font-semibold mb-1 text-protocol">{challenge.name}</h3>
+                    <p className="text-protocol/70 text-sm">
                       {challenge.description}
                     </p>
                   </div>
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       isActive
-                        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                        : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                        ? 'bg-token/20 text-token border border-token/30'
+                        : 'bg-protocol/10 text-protocol/60 border border-protocol/20'
                     }`}
                   >
                     {isActive ? 'Ativo' : 'Encerrado'}
@@ -140,20 +140,20 @@ export function ArenaDashboard() {
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
-                    <p className="text-xs text-gray-500">Taxa de entrada</p>
-                    <p className="font-semibold">{challenge.entryFee} $WOD</p>
+                    <p className="text-xs text-protocol/60">Taxa de entrada</p>
+                    <p className="font-semibold text-protocol font-mono">{challenge.entryFee} $WOD</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500">Prize Pool</p>
-                    <p className="font-semibold text-primary-600">{challenge.prizePool} $WOD</p>
+                    <p className="text-xs text-protocol/60">Prize Pool</p>
+                    <p className="font-semibold text-token font-mono">{challenge.prizePool} $WOD</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500">Participantes</p>
-                    <p className="font-semibold">{challenge.participantCount.toString()}</p>
+                    <p className="text-xs text-protocol/60">Participantes</p>
+                    <p className="font-semibold text-protocol">{challenge.participantCount.toString()}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500">Encerra em</p>
-                    <p className="font-semibold">
+                    <p className="text-xs text-protocol/60">Encerra em</p>
+                    <p className="font-semibold text-protocol">
                       {new Date(Number(challenge.endTime) * 1000).toLocaleDateString('pt-BR')}
                     </p>
                   </div>
@@ -164,7 +164,7 @@ export function ArenaDashboard() {
                     <button
                       onClick={() => handleEnterChallenge(challenge.id, challenge.entryFee)}
                       disabled={parseFloat(formattedBalance) < parseFloat(challenge.entryFee)}
-                      className="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+                      className="w-full px-4 py-2 bg-token text-arena rounded-lg hover:bg-[#e61912] disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-md"
                     >
                       {parseFloat(formattedBalance) < parseFloat(challenge.entryFee)
                         ? 'Saldo insuficiente'
@@ -172,17 +172,17 @@ export function ArenaDashboard() {
                     </button>
 
                     {selectedChallenge === challenge.id && (
-                      <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                        <p className="text-sm font-semibold mb-2">Submeter Prova de Esforço</p>
+                      <div className="p-3 bg-arena border border-token/30 rounded-lg">
+                        <p className="text-sm font-semibold mb-2 text-protocol">Submeter Prova de Esforço</p>
                         {trainingLogs.length === 0 ? (
-                          <p className="text-sm text-gray-500 mb-2">
+                          <p className="text-sm text-protocol/60 mb-2">
                             Você precisa ter treinos com vídeo registrados
                           </p>
                         ) : (
                           <select
                             value={selectedTraining || ''}
                             onChange={(e) => setSelectedTraining(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg mb-2 bg-white dark:bg-gray-900"
+                            className="w-full px-3 py-2 border border-token/30 rounded-lg mb-2 bg-arena text-protocol"
                           >
                             <option value="">Selecione um treino...</option>
                             {trainingLogs.map((training) => (
@@ -195,7 +195,7 @@ export function ArenaDashboard() {
                         <button
                           onClick={() => handleSubmitProof(challenge.id)}
                           disabled={!selectedTraining}
-                          className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 text-sm"
+                          className="w-full px-4 py-2 bg-token text-arena rounded-lg hover:bg-[#e61912] disabled:opacity-50 text-sm font-semibold shadow-md"
                         >
                           Submeter Prova
                         </button>
@@ -205,7 +205,7 @@ export function ArenaDashboard() {
                     {selectedChallenge !== challenge.id && (
                       <button
                         onClick={() => setSelectedChallenge(challenge.id)}
-                        className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 text-sm"
+                        className="w-full px-4 py-2 bg-protocol/10 border border-protocol/20 text-protocol rounded-lg hover:bg-protocol/20 text-sm"
                       >
                         Submeter Prova de Esforço
                       </button>

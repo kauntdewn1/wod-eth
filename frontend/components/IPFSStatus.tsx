@@ -39,8 +39,8 @@ export function IPFSStatus() {
 
   if (availableProviders.length === 0 && !localIPFSAvailable) {
     return (
-      <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
-        <p className="text-sm text-yellow-800 dark:text-yellow-200">
+      <div className="p-3 bg-token/10 border border-token/30 rounded-lg">
+        <p className="text-sm text-token">
           ⚠️ Nenhum provedor IPFS configurado. Configure NFT.Storage ou Lighthouse no .env
         </p>
       </div>
@@ -48,11 +48,11 @@ export function IPFSStatus() {
   }
 
   return (
-    <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-      <p className="text-sm font-semibold text-green-800 dark:text-green-200 mb-1">
+    <div className="p-3 bg-token/10 border border-token/30 rounded-lg">
+      <p className="text-sm font-semibold text-token mb-1">
         ✅ Provedores IPFS Disponíveis:
       </p>
-      <ul className="text-xs text-green-700 dark:text-green-300 space-y-1">
+      <ul className="text-xs text-protocol/80 space-y-1">
         {availableProviders.includes('nftstorage') && (
           <li>• NFT.Storage (configurado)</li>
         )}

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useAccount } from 'wagmi';
-import lighthouse from '@lighthouse-web3/sdk';
+import { uploadToIPFS, type IPFSProvider } from '@/lib/ipfs';
 
 export function VideoUpload() {
   const { address } = useAccount();
@@ -16,7 +16,7 @@ export function VideoUpload() {
     }
   };
 
-  const uploadToLighthouse = async () => {
+  const handleUpload = async () => {
     if (!file || !address) {
       alert('Selecione um arquivo e conecte sua wallet');
       return;
@@ -24,25 +24,19 @@ export function VideoUpload() {
 
     setUploading(true);
     try {
-      const apiKey = process.env.NEXT_PUBLIC_LIGHTHOUSE_API_KEY || '';
+      const provider = (process.env.NEXT_PUBLIC_IPFS_PROVIDER || 'lighthouse') as IPFSProvider;
+      const result = await uploadToIPFS(file, {
+        provider,
+        nftStorageApiKey: process.env.NEXT_PUBLIC_NFTSTORAGE_API_KEY,
+        lighthouseApiKey: process.env.NEXT_PUBLIC_LIGHTHOUSE_API_KEY,
+      });
       
-      // Upload para Lighthouse (IPFS com Filecoin)
-      const output = await lighthouse.upload(
-        file,
-        apiKey,
-        undefined,
-        undefined,
-        (progressData: any) => {
-          const percentageDone =
-            100 - (progressData?.total / progressData?.uploaded)?.toFixed(2);
-          console.log('Progress:', percentageDone);
-        }
-      );
-
-      if (output.data?.Hash) {
-        setCid(output.data.Hash);
-        console.log('CID (Proof of Effort):', output.data.Hash);
-        alert(`Vídeo enviado! CID: ${output.data.Hash}`);
+      if (result.cid) {
+        setCid(result.cid);
+        console.log('CID (Proof of Effort):', result.cid);
+        alert(`Vídeo enviado! CID: ${result.cid}`);
+      } else {
+        throw new Error('Upload falhou - CID não retornado');
       }
     } catch (error) {
       console.error('Upload error:', error);
@@ -101,15 +95,15 @@ export function VideoUpload() {
         )}
 
         <button
-          onClick={uploadToLighthouse}
+          onClick={handleUpload}
           disabled={!file || uploading || !address}
           className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {uploading ? 'Enviando para Lighthouse...' : 'Enviar para Lighthouse (IPFS)'}
+          {uploading ? 'Enviando para IPFS...' : 'Enviar para IPFS'}
         </button>
 
         <p className="text-xs text-gray-500 text-center">
-          O vídeo será armazenado permanentemente no IPFS via Lighthouse.storage
+          O vídeo será armazenado permanentemente no IPFS
         </p>
       </div>
     </div>

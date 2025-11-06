@@ -10,14 +10,14 @@ export function LoginButton() {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Seletor de modo (opcional - pode remover se quiser usar apenas um modo) */}
-      <div className="flex gap-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
+      {/* Seletor de modo */}
+      <div className="flex gap-2 p-1 bg-arena border border-token/20 rounded-lg">
         <button
           onClick={() => setSelectedMode('otp')}
           className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
             selectedMode === 'otp'
-              ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              ? 'bg-token text-arena shadow-sm'
+              : 'text-protocol/60 hover:text-protocol'
           }`}
         >
           Código (OTP)
@@ -26,8 +26,8 @@ export function LoginButton() {
           onClick={() => setSelectedMode('magicLink')}
           className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
             selectedMode === 'magicLink'
-              ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              ? 'bg-token text-arena shadow-sm'
+              : 'text-protocol/60 hover:text-protocol'
           }`}
         >
           Link Mágico

@@ -50,8 +50,8 @@ async function uploadToLighthouse(file: File, apiKey: string): Promise<UploadRes
   // API do Lighthouse mudou na versão 0.4.x
   const output = await lighthouse.default.upload(file, apiKey);
 
-  // Lighthouse retorna diretamente o CID na versão 0.4.x
-  const cid = output?.Hash || output?.data?.Hash || output;
+  // Lighthouse retorna { data: { Hash: string } } na versão 0.4.x
+  const cid = (output as any)?.data?.Hash || (output as any)?.Hash || (output as any);
 
   if (!cid || typeof cid !== 'string') {
     throw new Error('Lighthouse upload failed: No CID returned');

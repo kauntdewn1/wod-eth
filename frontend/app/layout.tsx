@@ -1,13 +1,16 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 
-const inter = Inter({ subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'], 
+  weight: ['400', '500', '600', '700'] 
+});
 
 export const metadata: Metadata = {
-  title: 'WOD [X] PRO - Performance Descentralizada',
-  description: 'Transforme seu desempenho físico em valor digital perpétuo - wod.eth',
+  title: 'WOD[X] PRO',
+  description: 'Transforme esforço físico em valor digital real.',
 };
 
 export default function RootLayout({
@@ -16,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <body className={inter.className}>
+    <html lang="pt-BR" className={spaceGrotesk.className}>
+      <body>
         <Providers>{children}</Providers>
       </body>
     </html>

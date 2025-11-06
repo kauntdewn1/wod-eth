@@ -18,6 +18,7 @@
     "@lighthouse-web3/sdk": "^0.4.3",
     "@tanstack/react-query": "^5.0.0",
     "ethers": "^6.8.0",
+    "lucide-react": "^0.552.0",
     "next": "14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

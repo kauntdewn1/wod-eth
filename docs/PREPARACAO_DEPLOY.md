@@ -11,17 +11,20 @@ Este guia explica **exatamente** o que você precisa antes de fazer o deploy.
 ### 1. Wallet (Endereço Ethereum)
 
 Você precisa de uma **wallet** com:
+
 - **Chave privada** (para assinar transações)
 - **MATIC** (para pagar gas fees)
 
 ### 2. Tokens MATIC para Gas
 
 **Para Mumbai (Testnet)**:
+
 - **Recomendado**: 0.1 - 0.5 MATIC
 - **Mínimo**: 0.01 MATIC
 - **Custo estimado do deploy**: ~0.001 - 0.01 MATIC
 
 **Para Polygon (Mainnet)**:
+
 - **Recomendado**: 1 - 5 MATIC
 - **Mínimo**: 0.5 MATIC
 - **Custo estimado do deploy**: ~0.1 - 0.5 MATIC
@@ -55,21 +58,24 @@ Você precisa de uma **wallet** com:
 **Faucets disponíveis**:
 
 1. **Polygon Faucet** (Recomendado)
-   - URL: https://faucet.polygon.technology/
+
+   - URL: <https://faucet.polygon.technology/>
    - Envia: 0.5 MATIC
    - Requisitos: Conta Alchemy (grátis)
 
 2. **QuickNode Faucet**
-   - URL: https://faucet.quicknode.com/polygon/mumbai
+
+   - URL: <https://faucet.quicknode.com/polygon/mumbai>
    - Envia: 0.1 MATIC
    - Requisitos: Conta QuickNode (grátis)
 
 3. **Alchemy Faucet**
-   - URL: https://www.alchemy.com/faucets/polygon-mumbai
+   - URL: <https://www.alchemy.com/faucets/polygon-mumbai>
    - Envia: 0.5 MATIC
    - Requisitos: Conta Alchemy (grátis)
 
 **Como usar**:
+
 1. Conecte sua wallet ao site
 2. Cole seu endereço da wallet
 3. Clique em "Send Me MATIC"
@@ -79,6 +85,7 @@ Você precisa de uma **wallet** com:
 ### Para Polygon (Mainnet) - COMPRAR
 
 **Onde comprar**:
+
 - **Binance, Coinbase, etc**: Comprar MATIC
 - **Bridges**: Trazer MATIC de outras blockchains
 - **Exchanges descentralizados**: Trocar outros tokens por MATIC

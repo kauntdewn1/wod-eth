@@ -21,27 +21,25 @@ export function useWODToken() {
   });
 
   // Aprovar gasto
-  const approve = () => {
-    const { writeContract, data: hash, isPending } = useWriteContract();
-    
-    const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
-      hash,
-    });
+  const { writeContract, data: hash, isPending } = useWriteContract();
+  
+  const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
+    hash,
+  });
 
-    return {
-      approve: (spender: string, amount: string) => {
-        const amountWei = parseEther(amount);
-        writeContract({
-          address: WOD_TOKEN_ADDRESS as `0x${string}`,
-          abi: WODTokenABI,
-          functionName: 'approve',
-          args: [spender as `0x${string}`, amountWei],
-        });
-      },
-      isLoading: isPending || isConfirming,
-      isSuccess,
-      hash,
-    };
+  const approveToken = {
+    approve: (spender: string, amount: string) => {
+      const amountWei = parseEther(amount);
+      writeContract({
+        address: WOD_TOKEN_ADDRESS as `0x${string}`,
+        abi: WODTokenABI,
+        functionName: 'approve',
+        args: [spender as `0x${string}`, amountWei],
+      });
+    },
+    isLoading: isPending || isConfirming,
+    isSuccess,
+    hash,
   };
 
   // Formatar saldo para exibição
@@ -53,7 +51,7 @@ export function useWODToken() {
     balance: balance.data ? formatEther(balance.data as bigint) : '0',
     formattedBalance,
     isLoading: balance.isLoading,
-    approve,
+    approveToken,
   };
 }
 

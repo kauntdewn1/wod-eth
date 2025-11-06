@@ -78,16 +78,16 @@ export function DailyTraining() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-2">📝 Treino Diário</h2>
-      <p className="text-sm text-gray-500 mb-6">
+    <div className="bg-arena border border-token/20 rounded-xl shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-2 text-protocol">📝 Treino Diário</h2>
+      <p className="text-sm text-protocol/70 mb-6">
         Registre seus treinos diários - <strong>sem custo de gas!</strong> (Off-chain)
       </p>
 
       <div className="space-y-4">
         {/* Formulário */}
         <div>
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium mb-2 text-protocol">
             Tipo de Treino *
           </label>
           <input
@@ -95,12 +95,12 @@ export function DailyTraining() {
             value={workoutType}
             onChange={(e) => setWorkoutType(e.target.value)}
             placeholder="Ex: CrossFit, Corrida, Musculação..."
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900"
+            className="w-full px-4 py-2 border border-token/30 rounded-lg bg-arena text-protocol"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium mb-2 text-protocol">
             Descrição
           </label>
           <textarea
@@ -108,19 +108,19 @@ export function DailyTraining() {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Descreva seu treino..."
             rows={3}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900"
+            className="w-full px-4 py-2 border border-token/30 rounded-lg bg-arena text-protocol"
           />
         </div>
 
         <div>
           <div className="flex justify-between items-center mb-2">
-            <label className="block text-sm font-medium">
+            <label className="block text-sm font-medium text-protocol">
               Vídeo (Opcional)
             </label>
             <select
               value={ipfsProvider}
               onChange={(e) => setIpfsProvider(e.target.value as IPFSProvider)}
-              className="text-xs px-2 py-1 border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-gray-900"
+              className="text-xs px-2 py-1 border border-token/30 rounded bg-arena text-protocol"
             >
               <option value="nftstorage">NFT.Storage</option>
               <option value="lighthouse">Lighthouse</option>
@@ -131,28 +131,28 @@ export function DailyTraining() {
             type="file"
             accept="video/*"
             onChange={handleFileChange}
-            className="block w-full text-sm text-gray-500
+            className="block w-full text-sm text-protocol/70
               file:mr-4 file:py-2 file:px-4
               file:rounded-lg file:border-0
               file:text-sm file:font-semibold
-              file:bg-primary-50 file:text-primary-700
-              hover:file:bg-primary-100"
+              file:bg-token file:text-arena
+              hover:file:bg-[#e61912]"
             disabled={uploading}
           />
           {uploading && (
             <div className="mt-2">
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div className="w-full bg-protocol/10 rounded-full h-2">
                 <div
-                  className="bg-primary-600 h-2 rounded-full transition-all duration-300"
+                  className="bg-token h-2 rounded-full transition-all duration-300"
                   style={{ width: `${uploadProgress}%` }}
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-protocol/60 mt-1">
                 Enviando para {ipfsProvider === 'nftstorage' ? 'NFT.Storage' : ipfsProvider === 'lighthouse' ? 'Lighthouse' : 'IPFS Local'}... {uploadProgress}%
               </p>
             </div>
           )}
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-protocol/60 mt-1">
             Vídeo será armazenado no IPFS (permanente), mas não registrado on-chain ainda
           </p>
         </div>
@@ -160,29 +160,29 @@ export function DailyTraining() {
         <button
           onClick={handleSaveTraining}
           disabled={uploading || !workoutType.trim()}
-          className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 font-semibold"
+          className="w-full px-6 py-3 bg-token text-arena rounded-lg hover:bg-[#e61912] disabled:opacity-50 font-semibold shadow-md"
         >
           {uploading ? 'Salvando...' : '💾 Salvar Treino (Gratuito!)'}
         </button>
 
         {/* Histórico */}
         {trainingLogs.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="font-semibold mb-4">Histórico de Treinos</h3>
+          <div className="mt-8 pt-6 border-t border-token/20">
+            <h3 className="font-semibold mb-4 text-protocol">Histórico de Treinos</h3>
             <div className="space-y-2 max-h-64 overflow-y-auto">
               {trainingLogs.map((log) => (
                 <div
                   key={log.id}
-                  className="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg text-sm"
+                  className="p-3 bg-protocol/5 border border-token/10 rounded-lg text-sm"
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="font-medium">{log.workoutType}</p>
-                      <p className="text-xs text-gray-500">
+                      <p className="font-medium text-protocol">{log.workoutType}</p>
+                      <p className="text-xs text-protocol/60">
                         {new Date(log.date).toLocaleDateString('pt-BR')}
                       </p>
                       {log.videoCID && (
-                        <p className="text-xs text-primary-600 mt-1">
+                        <p className="text-xs text-token mt-1 font-mono">
                           📹 IPFS: {log.videoCID.slice(0, 10)}...
                         </p>
                       )}
@@ -190,8 +190,8 @@ export function DailyTraining() {
                     <span
                       className={`text-xs px-2 py-1 rounded ${
                         log.syncedOnChain
-                          ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                          : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+                          ? 'bg-token/20 text-token border border-token/30'
+                          : 'bg-protocol/10 text-protocol/60 border border-protocol/20'
                       }`}
                     >
                       {log.syncedOnChain ? '✓ On-chain' : 'Off-chain'}
@@ -200,7 +200,7 @@ export function DailyTraining() {
                 </div>
               ))}
             </div>
-            <p className="text-xs text-gray-500 mt-4 text-center">
+            <p className="text-xs text-protocol/60 mt-4 text-center">
               💡 Estes treinos estão off-chain (gratuitos). Quando participar de um desafio,
               você escolhe qual usar como prova e aí sim registramos on-chain.
             </p>

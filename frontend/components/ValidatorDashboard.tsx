@@ -43,25 +43,25 @@ export function ValidatorDashboard() {
 
   if (!isValidator) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-        <h2 className="text-2xl font-bold mb-4">⚖️ Tornar-se Validador</h2>
+      <div className="bg-arena border border-token/20 rounded-xl shadow-lg p-6">
+        <h2 className="text-2xl font-bold mb-4 text-protocol">⚖️ Tornar-se Validador</h2>
         <div className="space-y-4">
-          <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <p className="text-sm mb-2">
-              <strong>Stake Mínimo:</strong> {minStake} $WOD
+          <div className="p-4 bg-token/10 border border-token/30 rounded-lg">
+            <p className="text-sm mb-2 text-protocol">
+              <strong>Stake Mínimo:</strong> <span className="font-mono text-token">{minStake} $WOD</span>
             </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">
+            <p className="text-xs text-protocol/70">
               Como validador, você avalia submissões e recebe parte das comissões dos desafios.
               O stake garante comprometimento e qualidade nas validações.
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-              Seu saldo: <strong>{formattedBalance} $WOD</strong>
+            <p className="text-sm text-protocol/70 mb-2">
+              Seu saldo: <strong className="text-token font-mono">{formattedBalance} $WOD</strong>
             </p>
             {parseFloat(formattedBalance) < parseFloat(minStake) && (
-              <p className="text-sm text-red-600 dark:text-red-400">
+              <p className="text-sm text-token">
                 Saldo insuficiente. Você precisa de {minStake} $WOD.
               </p>
             )}
@@ -70,7 +70,7 @@ export function ValidatorDashboard() {
           <button
             onClick={handleRegisterValidator}
             disabled={parseFloat(formattedBalance) < parseFloat(minStake)}
-            className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+            className="w-full px-6 py-3 bg-token text-arena rounded-lg hover:bg-[#e61912] disabled:opacity-50 disabled:cursor-not-allowed font-semibold shadow-md"
           >
             Registrar como Validador
           </button>
@@ -80,11 +80,11 @@ export function ValidatorDashboard() {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-6">⚖️ Painel do Validador</h2>
+    <div className="bg-arena border border-token/20 rounded-xl shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-6 text-protocol">⚖️ Painel do Validador</h2>
 
       {pendingSubmissions.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-protocol/60">
           <p>Nenhuma submissão pendente para validação</p>
         </div>
       ) : (
@@ -92,22 +92,22 @@ export function ValidatorDashboard() {
           {pendingSubmissions.map((submission, index) => (
             <div
               key={index}
-              className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+              className="border border-token/30 rounded-lg p-4 bg-arena"
             >
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <p className="font-semibold">Desafio #{submission.challengeId}</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="font-semibold text-protocol">Desafio #{submission.challengeId}</p>
+                  <p className="text-sm text-protocol/70 font-mono">
                     Atleta: {submission.athlete}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">
+                  <p className="text-xs text-protocol/60 mt-1 font-mono">
                     CID: {submission.proofCID}
                   </p>
                   <a
                     href={`https://ipfs.io/ipfs/${submission.proofCID}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-primary-600 hover:underline mt-1 inline-block"
+                    className="text-xs text-token hover:underline mt-1 inline-block"
                   >
                     Ver vídeo no IPFS →
                   </a>
@@ -117,13 +117,13 @@ export function ValidatorDashboard() {
               <div className="flex gap-2 mt-4">
                 <button
                   onClick={() => handleVote(submission.challengeId, submission.athlete, true)}
-                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold"
+                  className="flex-1 px-4 py-2 bg-token text-arena rounded-lg hover:bg-[#e61912] font-semibold shadow-md"
                 >
                   ✓ Rep (Aprovar)
                 </button>
                 <button
                   onClick={() => handleVote(submission.challengeId, submission.athlete, false)}
-                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold"
+                  className="flex-1 px-4 py-2 bg-protocol text-arena rounded-lg hover:bg-protocol/90 font-semibold shadow-md"
                 >
                   ✗ No-Rep (Rejeitar)
                 </button>

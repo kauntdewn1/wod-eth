@@ -11,6 +11,7 @@ O projeto está configurado para **Mumbai (chainId: 80001)**, mas o faucet pode 
 ### Opção 1: Usar Mumbai (Recomendado para agora)
 
 Se o faucet permitir selecionar Mumbai:
+
 - **Selecione**: "Polygon Mumbai" (não Amoy)
 - **Token**: MATIC ou POL (ambos funcionam)
 

@@ -129,7 +129,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
   // Se já está conectado
   if (isConnected) {
     return (
-      <div className="px-6 py-3 bg-green-100 dark:bg-green-900 border border-green-300 dark:border-green-700 rounded-lg text-green-800 dark:text-green-200 text-center">
+      <div className="px-6 py-3 bg-token/10 border border-token rounded-lg text-token text-center font-semibold">
         ✅ Conectado
       </div>
     );
@@ -138,15 +138,15 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
   // Magic Link: mostrar mensagem de confirmação
   if (mode === 'magicLink' && magicLinkSent) {
     return (
-      <div className="flex flex-col gap-4 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+      <div className="flex flex-col gap-4 p-6 bg-arena border border-token/30 rounded-lg">
         <div className="text-center">
-          <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
+          <h3 className="text-lg font-semibold text-protocol mb-2">
             Verifique seu e-mail
           </h3>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mb-4">
+          <p className="text-sm text-protocol/80 mb-4">
             Enviamos um link de verificação para <strong>{email}</strong>
           </p>
-          <p className="text-xs text-blue-600 dark:text-blue-400">
+          <p className="text-xs text-protocol/60">
             Clique no link no seu e-mail para completar o login
           </p>
         </div>
@@ -155,7 +155,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
             setMagicLinkSent(false);
             setEmail('');
           }}
-          className="px-4 py-2 text-sm bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600"
+          className="px-4 py-2 text-sm bg-protocol/10 border border-protocol/20 rounded-lg hover:bg-protocol/20 text-protocol"
         >
           Usar outro e-mail
         </button>
@@ -168,7 +168,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-600 dark:text-gray-400">
+          <label className="text-sm text-protocol/70">
             Digite o código de 6 dígitos enviado para {email}
           </label>
           <input
@@ -177,7 +177,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
             onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
             placeholder="123456"
             maxLength={6}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-center text-2xl tracking-widest"
+            className="px-4 py-2 border border-token/30 rounded-lg bg-arena text-center text-2xl tracking-widest text-protocol font-mono"
             disabled={loading}
           />
         </div>
@@ -185,7 +185,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
           <button
             onClick={handleVerifyOtp}
             disabled={loading || otpCode.length !== 6}
-            className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 flex-1"
+            className="px-6 py-3 bg-token text-arena rounded-lg hover:bg-[#e61912] disabled:opacity-50 flex-1 font-semibold shadow-md"
           >
             {loading ? 'Verificando...' : 'Verificar Código'}
           </button>
@@ -196,7 +196,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
               setEmail('');
             }}
             disabled={loading}
-            className="px-4 py-3 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50"
+            className="px-4 py-3 bg-protocol/10 border border-protocol/20 rounded-lg hover:bg-protocol/20 text-protocol disabled:opacity-50"
           >
             Cancelar
           </button>
@@ -204,7 +204,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
         <button
           onClick={handleSendEmail}
           disabled={loading}
-          className="text-sm text-primary-600 dark:text-primary-400 hover:underline"
+          className="text-sm text-token hover:underline"
         >
           Reenviar código
         </button>
@@ -216,7 +216,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <label className="text-sm text-gray-600 dark:text-gray-400">
+        <label className="text-sm text-protocol/70">
           {mode === 'otp' 
             ? 'Digite seu e-mail para receber um código de verificação'
             : 'Digite seu e-mail para receber um link de verificação'}
@@ -226,7 +226,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="seu@email.com"
-          className="px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800"
+          className="px-4 py-3 border border-token/30 rounded-lg bg-arena text-protocol"
           disabled={loading}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
@@ -238,7 +238,7 @@ export function EmailAuth({ mode = 'otp' }: EmailAuthProps) {
       <button
         onClick={handleSendEmail}
         disabled={loading || !email}
-        className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50"
+        className="px-6 py-3 bg-token text-arena rounded-lg hover:bg-[#e61912] disabled:opacity-50 font-semibold shadow-md"
       >
         {loading 
           ? 'Enviando...' 
