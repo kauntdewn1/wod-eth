@@ -28,6 +28,7 @@ export interface ArenaInterface extends Interface {
     nameOrSignature:
       | "MIN_CONSENSUS_PERCENT"
       | "VALIDATION_DEADLINE"
+      | "VALIDATION_FEE_PERCENT"
       | "challengeCount"
       | "challengeWinners"
       | "challenges"
@@ -62,6 +63,10 @@ export interface ArenaInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "VALIDATION_DEADLINE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "VALIDATION_FEE_PERCENT",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -126,6 +131,10 @@ export interface ArenaInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "VALIDATION_DEADLINE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "VALIDATION_FEE_PERCENT",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -358,6 +367,8 @@ export interface Arena extends BaseContract {
 
   VALIDATION_DEADLINE: TypedContractMethod<[], [bigint], "view">;
 
+  VALIDATION_FEE_PERCENT: TypedContractMethod<[], [bigint], "view">;
+
   challengeCount: TypedContractMethod<[], [bigint], "view">;
 
   challengeWinners: TypedContractMethod<
@@ -432,11 +443,13 @@ export interface Arena extends BaseContract {
   getSubmission: TypedContractMethod<
     [challengeId: BigNumberish, athlete: AddressLike],
     [
-      [string, string, bigint, boolean] & {
+      [string, string, bigint, boolean, bigint, bigint] & {
         athleteAddress: string;
         proofCID: string;
         timestamp: bigint;
         exists: boolean;
+        approvalVotes: bigint;
+        rejectVotes: bigint;
       }
     ],
     "view"
@@ -496,6 +509,9 @@ export interface Arena extends BaseContract {
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "VALIDATION_DEADLINE"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "VALIDATION_FEE_PERCENT"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "challengeCount"
@@ -575,11 +591,13 @@ export interface Arena extends BaseContract {
   ): TypedContractMethod<
     [challengeId: BigNumberish, athlete: AddressLike],
     [
-      [string, string, bigint, boolean] & {
+      [string, string, bigint, boolean, bigint, bigint] & {
         athleteAddress: string;
         proofCID: string;
         timestamp: bigint;
         exists: boolean;
+        approvalVotes: bigint;
+        rejectVotes: bigint;
       }
     ],
     "view"

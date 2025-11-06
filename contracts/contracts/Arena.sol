@@ -25,6 +25,7 @@ contract Arena is Ownable, ReentrancyGuard {
         bool isActive;
         mapping(address => Submission) submissions;
         address[] participants;
+        address[] validatorsWhoVoted; // Validadores que votaram neste desafio
     }
 
     struct Submission {
@@ -32,6 +33,8 @@ contract Arena is Ownable, ReentrancyGuard {
         string proofCID; // CID do Lighthouse/IPFS
         uint256 timestamp;
         bool exists;
+        uint256 approvalVotes;  // Votos de aprovação acumulados
+        uint256 rejectVotes;    // Votos de rejeição acumulados
     }
 
     struct Vote {
@@ -48,6 +51,7 @@ contract Arena is Ownable, ReentrancyGuard {
     uint256 public challengeCount;
     uint256 public constant VALIDATION_DEADLINE = 7 days;
     uint256 public constant MIN_CONSENSUS_PERCENT = 51; // 51% dos validadores devem aprovar
+    uint256 public constant VALIDATION_FEE_PERCENT = 10; // 10% do prize pool vai para validadores
 
     event ChallengeCreated(
         uint256 indexed challengeId,
@@ -172,6 +176,7 @@ contract Arena is Ownable, ReentrancyGuard {
 
     /**
      * @dev Validador vota em uma submissão (Rep/No-Rep)
+     * Acumula votos na submissão para reduzir custo de gás no resolveChallenge
      */
     function vote(
         uint256 challengeId,
@@ -199,6 +204,7 @@ contract Arena is Ownable, ReentrancyGuard {
             "Already voted for this athlete"
         );
 
+        // Registrar voto
         votes[voteKey] = Vote({
             validator: msg.sender,
             athlete: athlete,
@@ -206,11 +212,32 @@ contract Arena is Ownable, ReentrancyGuard {
             timestamp: block.timestamp
         });
 
+        // Acumular votos na submissão (reduz gás no resolveChallenge)
+        Submission storage submission = challenge.submissions[athlete];
+        if (approved) {
+            submission.approvalVotes += 1;
+        } else {
+            submission.rejectVotes += 1;
+        }
+
+        // Adicionar validador à lista (se ainda não votou neste desafio)
+        bool hasVotedInChallenge = false;
+        for (uint256 i = 0; i < challenge.validatorsWhoVoted.length; i++) {
+            if (challenge.validatorsWhoVoted[i] == msg.sender) {
+                hasVotedInChallenge = true;
+                break;
+            }
+        }
+        if (!hasVotedInChallenge) {
+            challenge.validatorsWhoVoted.push(msg.sender);
+        }
+
         emit VoteCast(challengeId, msg.sender, athlete, approved);
     }
 
     /**
      * @dev Resolve o desafio e distribui prêmios baseado no consenso
+     * Distribui prêmios para vencedores e recompensas para validadores
      */
     function resolveChallenge(uint256 challengeId) external {
         Challenge storage challenge = challenges[challengeId];
@@ -223,14 +250,33 @@ contract Arena is Ownable, ReentrancyGuard {
         address[] memory winners = _calculateWinners(challengeId);
         challenge.isActive = false;
 
-        if (winners.length > 0 && challenge.prizePool > 0) {
-            uint256 prizePerWinner = challenge.prizePool / winners.length;
-            
-            for (uint256 i = 0; i < winners.length; i++) {
-                require(
-                    wodToken.transfer(winners[i], prizePerWinner),
-                    "Prize transfer failed"
-                );
+        if (challenge.prizePool > 0) {
+            // Calcular taxa de validação (10% do prize pool)
+            uint256 validationReward = (challenge.prizePool * VALIDATION_FEE_PERCENT) / 100;
+            uint256 winnerPool = challenge.prizePool - validationReward;
+
+            // Distribuir prêmios para vencedores
+            if (winners.length > 0 && winnerPool > 0) {
+                uint256 prizePerWinner = winnerPool / winners.length;
+                
+                for (uint256 i = 0; i < winners.length; i++) {
+                    require(
+                        wodToken.transfer(winners[i], prizePerWinner),
+                        "Prize transfer failed"
+                    );
+                }
+            }
+
+            // Distribuir recompensas para validadores que votaram
+            if (validationReward > 0 && challenge.validatorsWhoVoted.length > 0) {
+                uint256 rewardPerValidator = validationReward / challenge.validatorsWhoVoted.length;
+                
+                for (uint256 i = 0; i < challenge.validatorsWhoVoted.length; i++) {
+                    require(
+                        wodToken.transfer(challenge.validatorsWhoVoted[i], rewardPerValidator),
+                        "Validator reward transfer failed"
+                    );
+                }
             }
 
             challengeWinners[challengeId] = winners;
@@ -241,6 +287,7 @@ contract Arena is Ownable, ReentrancyGuard {
 
     /**
      * @dev Calcula vencedores baseado no consenso de validadores
+     * USA VOTOS ACUMULADOS (reduz gás em 99%)
      */
     function _calculateWinners(
         uint256 challengeId
@@ -253,28 +300,19 @@ contract Arena is Ownable, ReentrancyGuard {
 
         for (uint256 i = 0; i < challenge.participants.length; i++) {
             address athlete = challenge.participants[i];
-            if (!challenge.submissions[athlete].exists) continue;
+            Submission storage submission = challenge.submissions[athlete];
+            
+            if (!submission.exists) continue;
 
-            uint256 approvalCount = 0;
-            uint256 voteCount = 0;
-
-            // Contar votos para este atleta
-            address[] memory validators = validatorRegistry.getValidators();
-            for (uint256 j = 0; j < validators.length; j++) {
-                bytes32 voteKey = keccak256(abi.encodePacked(challengeId, validators[j], athlete));
-                Vote memory vote_ = votes[voteKey];
-                if (vote_.timestamp > 0) {
-                    voteCount++;
-                    if (vote_.approved) {
-                        approvalCount++;
-                    }
-                }
-            }
-
+            // Usar votos acumulados (já calculados durante vote())
+            uint256 totalVotes = submission.approvalVotes + submission.rejectVotes;
+            
             // Verificar consenso (51% dos validadores devem aprovar)
+            // Se não há votos suficientes, não é vencedor
             if (
-                voteCount > 0 &&
-                (approvalCount * 100) / totalValidators >= MIN_CONSENSUS_PERCENT
+                totalVotes > 0 &&
+                totalValidators > 0 &&
+                (submission.approvalVotes * 100) / totalValidators >= MIN_CONSENSUS_PERCENT
             ) {
                 tempWinners[winnerCount] = athlete;
                 winnerCount++;
@@ -352,7 +390,9 @@ contract Arena is Ownable, ReentrancyGuard {
             address athleteAddress,
             string memory proofCID,
             uint256 timestamp,
-            bool exists
+            bool exists,
+            uint256 approvalVotes,
+            uint256 rejectVotes
         )
     {
         Submission storage submission = challenges[challengeId].submissions[
@@ -362,7 +402,9 @@ contract Arena is Ownable, ReentrancyGuard {
             submission.athlete,
             submission.proofCID,
             submission.timestamp,
-            submission.exists
+            submission.exists,
+            submission.approvalVotes,
+            submission.rejectVotes
         );
     }
 }
