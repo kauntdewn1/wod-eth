@@ -8,7 +8,8 @@
     "deploy:mumbai": "hardhat run scripts/deploy.ts --network mumbai",
     "deploy:amoy": "hardhat run scripts/deploy.ts --network amoy",
     "deploy:amoy:arena": "hardhat run scripts/deployArenaOnly.ts --network amoy",
-    "deploy:polygon": "hardhat run scripts/deploy.ts --network polygon"
+    "deploy:polygon": "hardhat run scripts/deploy.ts --network polygon",
+    "check-balance": "ts-node scripts/checkBalance.ts"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
