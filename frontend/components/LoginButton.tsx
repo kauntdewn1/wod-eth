@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useConnect } from 'wagmi';
-import { getAccountKit, isGasManagerEnabled } from '@/lib/alchemyAccountKit';
+import { createAlchemyProvider, isGasManagerEnabled } from '@/lib/alchemyAccountKit';
 
 export function LoginButton() {
   const [loading, setLoading] = useState(false);
@@ -11,32 +11,36 @@ export function LoginButton() {
   const handleSocialLogin = async (provider: 'google' | 'email') => {
     setLoading(true);
     try {
-      // Configuração do Account Kit com Gas Manager (se Policy ID estiver configurada)
-      const accountKit = getAccountKit();
+      // Verifica se Gas Manager está configurado
+      const hasGasManager = isGasManagerEnabled();
       
-      // Gas Manager configurado = transações subsidiadas (usuário não paga gas)
-      // Gas Manager não configurado = usuário paga suas próprias gas fees
-      if (isGasManagerEnabled()) {
+      if (hasGasManager) {
         console.log('✅ Gas Manager ativado - transações serão subsidiadas');
       } else {
         console.warn('⚠️ Gas Manager não configurado - usuários pagarão gas fees');
       }
 
-      // TODO: Implementar login social completo
-      // Para Google: accountKit.connectSocial('google')
-      // Para Email: accountKit.connectSocial('email')
-      // Depois conectar à wallet via Wagmi
+      // TODO: Implementar login social completo com Alchemy
+      // A implementação completa requer:
+      // 1. Configurar provider com createAlchemyProvider()
+      // 2. Integrar com Alchemy Account Kit para social login
+      // 3. Conectar wallet via Wagmi
       
-      console.log(`Login with ${provider}`);
-      console.log('Account Kit configurado:', {
-        hasGasManager: isGasManagerEnabled(),
+      console.log(`Login com ${provider}`);
+      console.log('Configuração:', {
+        hasGasManager,
         chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
+        apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY ? '✅ Configurada' : '❌ Não configurada',
+        appId: process.env.NEXT_PUBLIC_ALCHEMY_APP_ID ? '✅ Configurada' : '❌ Não configurada',
       });
       
-      // Por enquanto, apenas log
+      // Por enquanto, apenas verificação de configuração
       alert(
-        `Login com ${provider} será implementado.\n` +
-        `Gas Manager: ${isGasManagerEnabled() ? '✅ Ativado' : '⚠️ Desativado'}`
+        `Login com ${provider} será implementado em breve.\n\n` +
+        `Status:\n` +
+        `Gas Manager: ${hasGasManager ? '✅ Ativado' : '⚠️ Desativado'}\n` +
+        `API Key: ${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY ? '✅' : '❌'}\n` +
+        `App ID: ${process.env.NEXT_PUBLIC_ALCHEMY_APP_ID ? '✅' : '❌'}`
       );
     } catch (error) {
       console.error('Login error:', error);
