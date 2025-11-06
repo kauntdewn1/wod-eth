@@ -1,4 +1,6 @@
-# Status de Implementação - WODX Protocol
+# Status de Implementação - WOD [X] PRO
+
+**Domain**: `wod.eth` | **Token**: `$WOD`
 
 ## ✅ Completo
 

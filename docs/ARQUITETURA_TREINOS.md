@@ -146,5 +146,5 @@ Domingo:
 - 🏃 **Treinos diários** = Off-chain (IPFS + app local)
 - 🏟️ **Desafios competitivos** = On-chain (quando há valor em jogo)
 
-O WODX é sobre **certificar performance quando importa**, não sobre **toda sessão de treino**.
+O WOD [X] PRO é sobre **certificar performance quando importa**, não sobre **toda sessão de treino**.
 

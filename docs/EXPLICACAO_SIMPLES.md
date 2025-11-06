@@ -22,7 +22,7 @@ Imagine uma **corrida de rua** onde:
 4. Outros corredores **validam** se você realmente correu
 5. Se validado, você **ganha parte do pote** (ex: R$ 500)
 
-**A diferença do WODX:**
+**A diferença do WOD [X] PRO:**
 
 - ✅ Funciona **online** (não precisa estar no mesmo lugar)
 - ✅ **Automático** (não precisa de organização humana)
@@ -72,7 +72,7 @@ Imagine uma **corrida de rua** onde:
 - Instagram decide o que você vê ❌
 - Você não ganha nada pelo seu conteúdo ❌
 
-**WODX:**
+**WOD [X] PRO:**
 
 - Seu vídeo fica **para sempre** (armazenado em IPFS) ✅
 - Ninguém pode "desligar" o protocolo ✅
@@ -98,7 +98,7 @@ Imagine um **livro gigante** que:
 **Segunda-feira:**
 
 - Maria treina e grava 100 burpees
-- Salva no WODX (gratuito, off-chain)
+- Salva no WOD [X] PRO (gratuito, off-chain)
 - Vídeo vai para IPFS (permanente)
 
 **Terça-feira:**
@@ -247,7 +247,7 @@ Imagine um **livro gigante** que:
 
 ## 📝 Resumo Ultra-Simples
 
-**WODX = Instagram + Corrida de Rua + Bitcoin**
+**WOD [X] PRO = Instagram + Corrida de Rua + Bitcoin**
 
 - Você **grava** seu treino (como Instagram)
 - Você **compete** e pode **ganhar** (como corrida)
@@ -283,9 +283,9 @@ Depende do desafio. Pode ser R$ 10 ou R$ 100. Mas você pode **ganhar** muito ma
 
 ## 🎯 Conclusão
 
-**WODX transforma esforço em valor.**
+**WOD [X] PRO transforma esforço em valor.**
 
-Se você treina, compete, ou só acredita que atletas merecem ser recompensados, o WODX é para você.
+Se você treina, compete, ou só acredita que atletas merecem ser recompensados, o WOD [X] PRO é para você.
 
 **Simples, transparente, permanente.**
 

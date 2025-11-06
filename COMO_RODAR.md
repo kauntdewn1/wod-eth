@@ -1,4 +1,6 @@
-# Como Rodar o Frontend - WODX Protocol
+# Como Rodar o Frontend - WOD [X] PRO
+
+**Domain**: `wod.eth` | **Token**: `$WOD`
 
 ## 🚀 Início Rápido
 
@@ -61,6 +63,7 @@ NEXT_PUBLIC_CHAIN_ID=80001
 Para testar funcionalidades completas, você precisa:
 
 1. **Rodar Hardhat node** (Terminal 1):
+
 ```bash
 make dev-contracts
 # ou
@@ -68,6 +71,7 @@ cd contracts && npx hardhat node
 ```
 
 2. **Deploy dos contratos** (Terminal 2):
+
 ```bash
 make deploy-local
 # ou
@@ -75,6 +79,7 @@ cd contracts && npm run deploy:local
 ```
 
 3. **Copiar endereços** para `frontend/.env`:
+
 ```env
 NEXT_PUBLIC_WOD_TOKEN_ADDRESS=0x...
 NEXT_PUBLIC_ARENA_ADDRESS=0x...
@@ -86,18 +91,21 @@ NEXT_PUBLIC_VALIDATOR_REGISTRY_ADDRESS=0x...
 ## 🎯 Modo de Desenvolvimento Completo
 
 ### Terminal 1: Hardhat Node
+
 ```bash
 make dev-contracts
 ```
 Deixa rodando - cria blockchain local.
 
 ### Terminal 2: Deploy Contratos
+
 ```bash
 make deploy-local
 ```
 Aguarda Terminal 1 estar rodando, depois executa.
 
 ### Terminal 3: Frontend
+
 ```bash
 make dev
 ```
@@ -108,7 +116,7 @@ Acessa em http://localhost:3000
 ## 🔍 Verificar se Está Funcionando
 
 1. **Abre o navegador**: http://localhost:3000
-2. **Deve ver**: Tela do WODX Protocol
+2. **Deve ver**: Tela do WOD [X] PRO
 3. **Clica em "Entrar"**: Deve conectar (mesmo sem contratos deployados)
 
 ---
@@ -141,7 +149,7 @@ PORT=3001 npm run dev
 
 ### Tela Principal
 
-- **Header**: Logo WODX + Botão de login
+- **Header**: Logo WOD [X] PRO + Botão de login
 - **IPFS Status**: Mostra provedores disponíveis
 - **Treino Diário**: Formulário para registrar treinos
 - **Arena Dashboard**: Lista de desafios (vazia se não houver contratos)

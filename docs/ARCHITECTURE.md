@@ -1,8 +1,10 @@
-# Arquitetura WODX Protocol
+# Arquitetura WOD [X] PRO
 
 ## Visão Geral
 
-O WODX é um protocolo descentralizado que transforma desempenho físico em valor digital perpétuo através de blockchain. Toda a lógica de negócio roda on-chain, eliminando a necessidade de bancos de dados tradicionais.
+**Domain**: `wod.eth` | **Token**: `$WOD`
+
+O WOD [X] PRO é um protocolo descentralizado que transforma desempenho físico em valor digital perpétuo através de blockchain. Toda a lógica de negócio roda on-chain, eliminando a necessidade de bancos de dados tradicionais.
 
 ## A Stack de Soberania
 

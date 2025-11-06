@@ -1,4 +1,6 @@
-# Troubleshooting - WODX Protocol
+# Troubleshooting - WOD [X] PRO
+
+**Domain**: `wod.eth` | **Token**: `$WOD`
 
 ## Erros Comuns e Soluções
 
