@@ -1,82 +1,41 @@
 'use client';
 
 import { useState } from 'react';
-import { useConnect } from 'wagmi';
-import { verifyAlchemyConfig, isGasManagerEnabled } from '@/lib/alchemyAccountKit';
+import { EmailAuth } from './EmailAuth';
+
+type AuthMode = 'otp' | 'magicLink';
 
 export function LoginButton() {
-  const [loading, setLoading] = useState(false);
-  const { connect } = useConnect();
-
-  const handleSocialLogin = async (provider: 'google' | 'email') => {
-    setLoading(true);
-    try {
-      // Verifica configuração do Alchemy
-      const config = verifyAlchemyConfig();
-      
-      if (!config.valid) {
-        alert(`Configuração incompleta:\n${config.errors.join('\n')}`);
-        setLoading(false);
-        return;
-      }
-
-      // Verifica se Gas Manager está configurado
-      const hasGasManager = isGasManagerEnabled();
-      
-      if (hasGasManager) {
-        console.log('✅ Gas Manager ativado - transações serão subsidiadas');
-      } else {
-        console.warn('⚠️ Gas Manager não configurado - usuários pagarão gas fees');
-      }
-
-      // TODO: Implementar login social completo com Alchemy Account Kit
-      // A implementação completa requer:
-      // 1. Usar @alchemy/aa-accounts para criar signer social
-      // 2. Criar provider com createLightAccountAlchemyProvider(signer)
-      // 3. Integrar com Wagmi para conectar wallet
-      // 4. Configurar Gas Manager com withAlchemyGasManager
-      
-      console.log(`Login com ${provider}`);
-      console.log('Configuração:', {
-        hasGasManager,
-        chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
-        apiKey: '✅ Configurada',
-        appId: '✅ Configurada',
-      });
-      
-      // Por enquanto, apenas verificação de configuração
-      alert(
-        `Login com ${provider} será implementado em breve.\n\n` +
-        `Status:\n` +
-        `Gas Manager: ${hasGasManager ? '✅ Ativado' : '⚠️ Desativado'}\n` +
-        `API Key: ✅\n` +
-        `App ID: ✅`
-      );
-    } catch (error) {
-      console.error('Login error:', error);
-      alert(`Erro ao conectar: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [selectedMode, setSelectedMode] = useState<AuthMode>('otp');
 
   return (
-    <div className="flex gap-4">
-      <button
-        onClick={() => handleSocialLogin('google')}
-        disabled={loading}
-        className="px-6 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50"
-      >
-        {loading ? 'Conectando...' : 'Entrar com Google'}
-      </button>
-      <button
-        onClick={() => handleSocialLogin('email')}
-        disabled={loading}
-        className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50"
-      >
-        {loading ? 'Conectando...' : 'Entrar com E-mail'}
-      </button>
+    <div className="flex flex-col gap-4">
+      {/* Seletor de modo (opcional - pode remover se quiser usar apenas um modo) */}
+      <div className="flex gap-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <button
+          onClick={() => setSelectedMode('otp')}
+          className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            selectedMode === 'otp'
+              ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
+              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+          }`}
+        >
+          Código (OTP)
+        </button>
+        <button
+          onClick={() => setSelectedMode('magicLink')}
+          className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            selectedMode === 'magicLink'
+              ? 'bg-white dark:bg-gray-700 text-primary-600 dark:text-primary-400 shadow-sm'
+              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+          }`}
+        >
+          Link Mágico
+        </button>
+      </div>
+
+      {/* Componente de autenticação */}
+      <EmailAuth mode={selectedMode} />
     </div>
   );
 }
-
