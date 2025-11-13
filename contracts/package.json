@@ -1,5 +1,5 @@
 {
-  "name": "@wodx/contracts",
+  "name": "@wodxpro/contracts",
   "version": "0.1.0",
   "scripts": {
     "compile": "hardhat compile",
@@ -9,7 +9,9 @@
     "deploy:amoy": "hardhat run scripts/deploy.ts --network amoy",
     "deploy:amoy:arena": "hardhat run scripts/deployArenaOnly.ts --network amoy",
     "deploy:polygon": "hardhat run scripts/deploy.ts --network polygon",
-    "check-balance": "ts-node scripts/checkBalance.ts"
+    "check-balance": "ts-node scripts/checkBalance.ts",
+    "verify:amoy": "hardhat run scripts/verify.ts --network amoy",
+    "verify": "hardhat verify"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
@@ -24,7 +26,7 @@
     "@types/mocha": "^10.0.10",
     "chai": "^4.5.0",
     "dotenv": "^17.2.3",
-    "hardhat": "^2.19.0",
+    "hardhat": "^2.22.0",
     "hardhat-gas-reporter": "^1.0.10",
     "solidity-coverage": "^0.8.16",
     "source-map": "^0.7.4",
@@ -33,6 +35,10 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@alchemy/aa-accounts": "^3.6.1",
+    "@alchemy/aa-alchemy": "^3.7.3",
+    "@alchemy/aa-core": "^3.6.1",
+    "@alchemy/aa-ethers": "^3.6.1",
     "ethers": "^6.8.0"
   }
 }

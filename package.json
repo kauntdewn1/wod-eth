@@ -1,5 +1,5 @@
 {
-  "name": "wodx-protocol",
+  "name": "wod-x-pro",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "hardhat": "^2.27.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.0.0"
   }

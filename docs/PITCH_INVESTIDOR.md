@@ -27,7 +27,7 @@ Atletas e fãs de fitness têm poucas formas de monetizar ou comprovar seu desem
 
 ### Nossa Solução
 
-**WODX usa blockchain para criar um sistema permanente e transparente:**
+**WOD X PRO usa blockchain para criar um sistema permanente e transparente:**
 
 - ✅ **Prova Permanente**: Vídeos de treino ficam armazenados para sempre (IPFS)
 - ✅ **Validação Descentralizada**: Outros atletas validam o desempenho (não um "juiz" central)
@@ -96,7 +96,7 @@ Atletas e fãs de fitness têm poucas formas de monetizar ou comprovar seu desem
 - **Mercado de suplementos/fitness**: R$ 10+ bilhões/ano
 - **Apostas esportivas**: R$ 1+ bilhão/ano (crescendo)
 
-### Oportunidade WODX
+### Oportunidade WOD X PRO
 
 - **Nicho Inicial**: CrossFit, atletas de alto desempenho
 - **Expansão**: HIIT, funcional, corrida, ciclismo
@@ -134,7 +134,7 @@ Atletas e fãs de fitness têm poucas formas de monetizar ou comprovar seu desem
 
 ### vs. Apps de Fitness Tradicionais
 
-| App Tradicional | WODX Protocol |
+| App Tradicional | WOD X PRO Protocol |
 |-----------------|---------------|
 | Dados em servidor privado | Dados na blockchain (públicos) |
 | Pode "sumir" se app fechar | Permanente (sobrevive à empresa) |
@@ -144,7 +144,7 @@ Atletas e fãs de fitness têm poucas formas de monetizar ou comprovar seu desem
 
 ### vs. Competições Tradicionais
 
-| Competição Tradicional | WODX Arena |
+| Competição Tradicional | WOD X PRO Arena |
 |------------------------|------------|
 | Localização física | Global (qualquer lugar) |
 | Custo alto de organização | Automatizado (smart contract) |
@@ -332,7 +332,7 @@ Para mais informações sobre investimento:
 - **Email**: [seu-email@wod.eth]
 - **Domain ENS**: wod.eth
 - **Repositório**: https://github.com/kauntdewn1/wod-eth
-- **Documentação Técnica**: `/docs/ARCHITECTURE.md`
+- **Documentação Técnica**: `ARCHITECTURE.md`
 
 ---
 

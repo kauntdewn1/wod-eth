@@ -173,7 +173,7 @@ Acesse: **http://localhost:3000**
    - **One Time Password (OTP)** - Recomendado (3x maior conversão)
    - **Magic Link** - Alternativa (requer configurar Redirect URL)
 
-Para mais detalhes, veja [EMAIL_AUTH_SETUP.md](docs/EMAIL_AUTH_SETUP.md)
+Para mais detalhes, veja [EMAIL_AUTH_SETUP.md](EMAIL_AUTH_SETUP.md)
 
 ---
 
@@ -330,12 +330,12 @@ Certifique-se de ter MATIC na testnet para gas (use faucet):
 
 ### Documentação do Projeto
 
-- [README.md](README.md) - Visão geral do projeto
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - Arquitetura técnica
-- [docs/EMAIL_AUTH_SETUP.md](docs/EMAIL_AUTH_SETUP.md) - Setup de autenticação
-- [docs/GAS_MANAGER.md](docs/GAS_MANAGER.md) - Gas Manager setup
-- [docs/IPFS_SETUP.md](docs/IPFS_SETUP.md) - Configuração IPFS
-- [docs/FAQ.md](docs/FAQ.md) - Perguntas frequentes
+- [README.md](../README.md) - Visão geral do projeto
+- [ARCHITECTURE.md](ARCHITECTURE.md) - Arquitetura técnica
+- [EMAIL_AUTH_SETUP.md](EMAIL_AUTH_SETUP.md) - Setup de autenticação
+- [GAS_MANAGER.md](GAS_MANAGER.md) - Gas Manager setup
+- [IPFS_SETUP.md](IPFS_SETUP.md) - Configuração IPFS
+- [FAQ.md](FAQ.md) - Perguntas frequentes
 
 ### Documentação Externa
 

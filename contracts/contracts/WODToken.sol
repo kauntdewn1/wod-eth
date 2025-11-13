@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * @dev Token ERC20 do protocolo WOD [X] PRO ($WOD)
  */
 contract WODToken is ERC20, Ownable {
-    constructor(address initialOwner) ERC20("WOD Token", "WOD") Ownable(initialOwner) {
+    constructor(address initialOwner) ERC20("WOD X PRO", "WOD") Ownable(initialOwner) {
         // Supply inicial pode ser mintado conforme necessário
         // ou distribuído via on-ramp (Alchemy Pay)
     }

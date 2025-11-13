@@ -216,7 +216,7 @@
 
 ## 🚀 **Como Começar**
 
-1. Siga o `GETTING_STARTED.md`
+1. Siga o [GETTING_STARTED.md](GETTING_STARTED.md)
 2. Configure variáveis de ambiente
 3. Deploy dos contratos (testnet primeiro)
 4. Configure frontend com endereços dos contratos

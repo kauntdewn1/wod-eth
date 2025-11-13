@@ -10,9 +10,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "types": ["node", "hardhat", "@nomicfoundation/hardhat-ethers"]
   },
-  "include": ["./scripts/**/*", "./test/**/*"],
+  "include": ["./scripts/**/*", "./test/**/*", "./hardhat.config.ts", "./typechain-types/**/*"],
   "exclude": ["node_modules", "dist"]
 }
-

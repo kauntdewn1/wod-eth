@@ -28,7 +28,7 @@ Token ERC20 padrão do protocolo. Representa a moeda de valor do WOD [X] PRO.
 ```solidity
 constructor(address initialOwner)
 ```
-- **O que faz**: Cria o token com nome "WOD Token" e símbolo "WOD"
+- **O que faz**: Cria o token com nome "WOD X PRO" e símbolo "WOD"
 - **Quem é owner**: Endereço que fez o deploy (deployer)
 - **Supply inicial**: 0 (token não tem supply pré-minteado)
 
@@ -59,7 +59,7 @@ function burn(uint256 amount) external
 
 ### O Que Acontece no Deploy
 
-1. Token é criado com nome "WOD Token" e símbolo "WOD"
+1. Token é criado com nome "WOD X PRO" e símbolo "WOD"
 2. Deployer vira owner
 3. Supply inicial = 0
 4. Owner pode mint tokens quando necessário

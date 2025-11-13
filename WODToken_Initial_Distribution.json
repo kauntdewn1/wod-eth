@@ -1,0 +1,55 @@
+{
+    "token": {
+        "name": "WOD X PRO",
+        "symbol": "WOD",
+        "decimals": 18,
+        "total_supply": 1000000000,
+        "max_supply": "1_000_000_000 WOD (hard cap)"
+    },
+    "distribution": {
+        "Treasury": {
+            "allocation": "30%",
+            "amount": 300000000,
+            "address": "0x86485aa077f61909f15fc8a5a1ba3167562c9a54"
+        },
+        "Challenge Rewards": {
+            "allocation": "25%",
+            "amount": 250000000,
+            "mechanism": "Mint-on-demand via Arena",
+            "controlled_by": "MINTER_ROLE"
+        },
+        "Founders": {
+            "allocation": "15%",
+            "amount": 150000000,
+            "vesting": "12 months linear (off-chain)",
+            "address": "0x02dfef57bc5d36bc1c08cb6272386ca0ec32da86"
+        },
+        "Partners": {
+            "allocation": "10%",
+            "amount": 100000000,
+            "vesting": "6 months cliff (off-chain)",
+            "address": "0xcd38CD02A7d04c283330162359C9c8E597Ed5068"
+        },
+        "Liquidity": {
+            "allocation": "10%",
+            "amount": 100000000,
+            "destination": "Uniswap Pool",
+            "address": "0x947D6eCd44C3657BC43c734C65562a9D62617631"
+        },
+        "DAO": {
+            "allocation": "10%",
+            "amount": 100000000,
+            "governance": "DAO Treasury",
+            "address": "0xa387691e594df109ad9ca83767f39d419cbc6001"
+        }
+    },
+    "deployment": {
+        "version": "1.0.0",
+        "date": "2025-11-12T02:51:52Z",
+        "network": "Polygon Mainnet",
+        "token_address": "TO_BE_FILLED_AFTER_DEPLOY",
+        "safe_multisig": "0x86485aa077f61909f15fc8a5a1ba3167562c9a54",
+        "ipfs_hash": "TO_BE_FILLED_AFTER_UPLOAD",
+        "polygonscan_tx": "TO_BE_FILLED_AFTER_DEPLOY"
+    }
+}

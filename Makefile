@@ -169,7 +169,7 @@ git-diff: ## Mostra diff do git
 docker-build: ## Builda imagem Docker (se configurado)
 	@echo "$(BLUE)🐳 Building Docker image...$(NC)"
 	@if [ -f Dockerfile ]; then \
-		docker build -t wodx-protocol .; \
+		docker build -t wod-x-pro .; \
 	else \
 		echo "$(YELLOW)⚠️  Dockerfile não encontrado$(NC)"; \
 	fi

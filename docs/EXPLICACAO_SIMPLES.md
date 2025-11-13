@@ -147,16 +147,16 @@ Imagine um **livro gigante** que:
 
 ## 💰 Modelo de Receita
 
-### Como o WODX Ganha Dinheiro
+### Como o WOD X PRO Ganha Dinheiro
 
 1. **Taxa de Desafios**
    - 5-10% de cada taxa de entrada vai para o protocolo
    - Ex: 100 pessoas pagam R$ 50 = R$ 5.000
-   - WODX recebe R$ 250-500
+   - WOD X PRO recebe R$ 250-500
 
 2. **On-Ramp PIX**
    - Margem na conversão R$ → $WOD
-   - Ex: R$ 100 compra 200 $WOD, WODX ganha R$ 2-5
+   - Ex: R$ 100 compra 200 $WOD, WOD X PRO ganha R$ 2-5
 
 3. **Futuro: Taxa de Apostas**
    - 5% de cada aposta no mercado

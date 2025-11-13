@@ -6,7 +6,7 @@
 
 ## A Resposta: NÃO! 🎯
 
-O WODX opera em **dois níveis diferentes**:
+O WOD X PRO opera em **dois níveis diferentes**:
 
 ---
 

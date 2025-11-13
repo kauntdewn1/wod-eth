@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --protocol: #000000;
+  --token: #ff1c16;
+  --arena: #f4f0e9;
+  --token-hover: #e61912;
+}
+
+body {
+  color: var(--protocol);
+  background: var(--arena);
+}
+
+/* Estilos para elementos blockchain */
+.monospace {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Drop shadow global do token */
+.drop-shadow-token {
+  filter: drop-shadow(0 0 8px rgba(255, 28, 22, 0.67));
+}
+
