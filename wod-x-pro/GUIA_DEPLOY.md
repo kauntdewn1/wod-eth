@@ -211,6 +211,7 @@ O script `deploy.ts` faz deploy de **3 contratos**:
 3. **Arena** - Contrato principal de desafios
 
 **Ordem de deploy:**
+
 1. WODToken (recebe ownership do deployer inicialmente)
 2. Transferência de ownership para Safe (se configurado)
 3. ValidatorRegistry (usa endereço do WODToken)

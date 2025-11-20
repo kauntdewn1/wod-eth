@@ -397,6 +397,7 @@ Ciclo se repete (mais demanda por $WOD)
 ```
 
 **Fatores de Valorização:**
+
 - **Demanda**: Mais atletas = mais entry fees = mais demanda por $WOD
 - **Escassez**: Max supply fixo + queima = deflacionário
 - **Utilidade**: Token necessário para participar do protocolo
@@ -411,6 +412,7 @@ Ciclo se repete (mais demanda por $WOD)
 **Quem pode criar**: Owner (Safe multisig, futuramente DAO)
 
 **Parâmetros de um Desafio:**
+
 - **Nome**: Identificação do desafio
 - **Descrição**: Regras e critérios detalhados
 - **Entry Fee**: Taxa de entrada em $WOD
@@ -430,6 +432,7 @@ End Time: 2024-12-07 23:59 UTC
 ### 5.2 Participação
 
 **Processo:**
+
 1. Atleta aprova Arena para gastar entry fee
 2. Atleta chama `enterChallenge(challengeId)`
 3. Entry fee é transferido para o contrato
@@ -437,6 +440,7 @@ End Time: 2024-12-07 23:59 UTC
 5. Prize pool aumenta pelo valor da entry fee
 
 **Restrições:**
+
 - Desafio deve estar ativo
 - Deve estar dentro do período (startTime ≤ now ≤ endTime)
 - Atleta não pode ter entrado antes no mesmo desafio
@@ -445,6 +449,7 @@ End Time: 2024-12-07 23:59 UTC
 ### 5.3 Submissão de Prova
 
 **Processo:**
+
 1. Atleta grava vídeo da performance
 2. Upload para Lighthouse.storage (IPFS)
 3. Recebe CID (Content Identifier)
@@ -452,6 +457,7 @@ End Time: 2024-12-07 23:59 UTC
 5. CID é registrado on-chain vinculado ao atleta
 
 **Requisitos da Prova:**
+
 - Vídeo deve estar em IPFS (permanente)
 - CID deve ser válido
 - Submissão deve ser feita antes do endTime
@@ -460,17 +466,20 @@ End Time: 2024-12-07 23:59 UTC
 ### 5.4 Sistema de Validação
 
 **Validadores:**
+
 - Devem ter stake mínimo (1.000 $WOD)
 - Registrados no ValidatorRegistry
 - Podem votar em qualquer submissão
 
 **Votação:**
+
 - **Rep (approved = true)**: Validador aprova a performance
 - **No-Rep (approved = false)**: Validador rejeita a performance
 - Cada validador pode votar apenas uma vez por atleta por desafio
 - Votos são registrados on-chain com timestamp
 
 **Período de Validação:**
+
 - Começa: Após endTime do desafio
 - Duração: 7 dias (VALIDATION_DEADLINE)
 - Após deadline: Qualquer um pode chamar `resolveChallenge()`
@@ -478,6 +487,7 @@ End Time: 2024-12-07 23:59 UTC
 ### 5.5 Consenso e Resolução
 
 **Cálculo de Consenso:**
+
 - Para cada atleta, conta votos de aprovação
 - Calcula percentual: `approvalVotes / totalValidators`
 - Se `percentual ≥ 51%` (MIN_CONSENSUS_PERCENT): Atleta é vencedor
@@ -491,11 +501,13 @@ Atleta C: 5 aprovações, 2 rejeições → 50% → ❌ Não vencedor (precisa 5
 ```
 
 **Distribuição de Prêmios:**
+
 - Prize pool é dividido igualmente entre todos os vencedores
 - Se houver 3 vencedores e prize pool de 300 WOD: cada um recebe 100 WOD
 - Distribuição é automática via `WODToken.transfer()`
 
 **Comissão de Validadores (Futuro):**
+
 - 10% do prize pool pode ir para validadores
 - Distribuído proporcionalmente ao stake
 - Incentiva validação de qualidade
@@ -507,11 +519,13 @@ Atleta C: 5 aprovações, 2 rejeições → 50% → ❌ Não vencedor (precisa 5
 ### 6.1 Registro de Validadores
 
 **Requisitos:**
+
 - Stake mínimo: 1.000 $WOD (configurável)
 - Aprovação prévia do WODToken para ValidatorRegistry
 - Não pode estar já registrado
 
 **Processo:**
+
 1. Validador aprova WODToken para ValidatorRegistry
 2. Chama `registerValidator(stakeAmount)`
 3. Tokens são transferidos para o contrato (stake)
@@ -521,11 +535,13 @@ Atleta C: 5 aprovações, 2 rejeições → 50% → ❌ Não vencedor (precisa 5
 ### 6.2 Incentivos
 
 **Atuais:**
+
 - Validadores podem validar performances
 - Participam do consenso descentralizado
 - Contribuem para a qualidade do protocolo
 
 **Futuros:**
+
 - Comissão por validação bem-sucedida
 - Distribuição proporcional ao stake
 - Penalidades por validação maliciosa (slashing)
@@ -533,11 +549,13 @@ Atleta C: 5 aprovações, 2 rejeições → 50% → ❌ Não vencedor (precisa 5
 ### 6.3 Qualidade e Reputação
 
 **Garantias de Qualidade:**
+
 - Stake mínimo garante comprometimento financeiro
 - Sistema de consenso (51%) previne manipulação
 - Votos são públicos e auditáveis
 
 **Reputação Futura:**
+
 - Sistema de reputação on-chain
 - Validadores com histórico positivo ganham mais comissão
 - Validadores maliciosos podem perder stake (slashing)
@@ -549,11 +567,13 @@ Atleta C: 5 aprovações, 2 rejeições → 50% → ❌ Não vencedor (precisa 5
 ### 7.1 IPFS e Filecoin
 
 **Tecnologia:**
+
 - **IPFS**: Protocolo de armazenamento descentralizado
 - **Filecoin**: Rede de armazenamento permanente
 - **Lighthouse.storage**: Provedor que garante permanência
 
 **Vantagens:**
+
 - ✅ **Permanência**: Vídeos não podem ser deletados
 - ✅ **Descentralização**: Não depende de servidor único
 - ✅ **Acesso Global**: Qualquer um pode acessar via CID
@@ -562,16 +582,19 @@ Atleta C: 5 aprovações, 2 rejeições → 50% → ❌ Não vencedor (precisa 5
 ### 7.2 CID (Content Identifier)
 
 **O que é:**
+
 - Hash criptográfico do conteúdo
 - Único para cada vídeo
 - Não pode ser alterado sem mudar o conteúdo
 
 **Uso no Protocolo:**
+
 - CID é registrado on-chain no Arena.sol
 - Vincula prova de esforço ao atleta
 - Validadores acessam vídeo via CID
 
 **Exemplo:**
+
 ```
 Vídeo → IPFS → CID: QmXxx123...
 → Arena.submitProof(challengeId, "QmXxx123...")
@@ -586,17 +609,20 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 8.1 Alchemy Account Kit
 
 **Tecnologia:**
+
 - Smart Contract Wallets (Account Abstraction)
 - Login social (Google, e-mail)
 - Recuperação de conta sem seed phrase
 
 **Experiência do Usuário:**
+
 1. Atleta clica "Entrar com Google"
 2. Wallet é criada automaticamente
 3. Não precisa gerenciar chaves privadas
 4. Transações podem ser assinadas sem conhecimento técnico
 
 **Benefícios:**
+
 - ✅ Zero fricção de entrada
 - ✅ Recuperação fácil (via e-mail)
 - ✅ Mais seguro que wallets tradicionais
@@ -605,11 +631,13 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 8.2 Gasless Transactions
 
 **Meta-Transactions:**
+
 - Protocolo pode subsidiar gas fees inicialmente
 - Atletas não precisam ter ETH/MATIC para transações
 - Reduz barreira de entrada
 
 **Account Abstraction:**
+
 - Permite assinar transações sem gerenciar gas
 - Paymaster pode pagar gas em nome do usuário
 - Experiência similar a apps web2
@@ -623,18 +651,21 @@ Vídeo → IPFS → CID: QmXxx123...
 **Status**: ✅ Em desenvolvimento
 
 **Concluído:**
+
 - [x] Smart Contracts (WODToken, ValidatorRegistry, Arena)
 - [x] Frontend básico (Next.js)
 - [x] Integração IPFS (Lighthouse.storage)
 - [x] Sistema de login (Alchemy Account Kit)
 
 **Em Andamento:**
+
 - [ ] Integração completa Alchemy Account Kit (social login)
 - [ ] On-Ramp PIX funcional (Alchemy Pay)
 - [ ] Deploy em testnet (Polygon Amoy)
 - [ ] Beta com 100 usuários
 
 **Objetivos:**
+
 - 1.000 usuários ativos
 - 10+ desafios criados
 - 50+ validadores registrados
@@ -642,6 +673,7 @@ Vídeo → IPFS → CID: QmXxx123...
 ### Fase 2: Crescimento (Q2 - Q3 2025)
 
 **Planejado:**
+
 - [ ] Deploy em mainnet (Polygon POS)
 - [ ] Marketing para comunidade CrossFit/fitness
 - [ ] Sistema de oráculo (preparação para Fase 2: Mercado)
@@ -649,6 +681,7 @@ Vídeo → IPFS → CID: QmXxx123...
 - [ ] Sistema de reputação on-chain
 
 **Objetivos:**
+
 - 10.000+ usuários ativos
 - 100+ desafios mensais
 - 200+ validadores ativos
@@ -657,6 +690,7 @@ Vídeo → IPFS → CID: QmXxx123...
 ### Fase 3: O Mercado (Q4 2025)
 
 **Nova Funcionalidade:**
+
 - [ ] Bolsa de performance descentralizada
 - [ ] Apostas em eventos esportivos
 - [ ] Oráculo descentralizado para resultados
@@ -664,6 +698,7 @@ Vídeo → IPFS → CID: QmXxx123...
 - [ ] Sistema de odds automático
 
 **Objetivos:**
+
 - 50.000+ usuários ativos
 - Mercado de apostas funcional
 - Volume de apostas de R$ 100.000+/mês
@@ -671,6 +706,7 @@ Vídeo → IPFS → CID: QmXxx123...
 ### Fase 4: Escala e Expansão (2026+)
 
 **Expansão:**
+
 - [ ] Integração com wearables (Apple Watch, Garmin)
 - [ ] Parcerias com academias e coaches
 - [ ] Expansão para outros esportes (corrida, ciclismo, natação)
@@ -678,6 +714,7 @@ Vídeo → IPFS → CID: QmXxx123...
 - [ ] Token listing em DEX/CEX
 
 **Objetivos:**
+
 - 100.000+ usuários ativos
 - Presença global
 - Economia própria do protocolo
@@ -714,6 +751,7 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 10.2 Projeção de Receita
 
 **Cenário Conservador (Ano 1):**
+
 - 1.000 usuários ativos
 - 10 desafios/mês
 - 50 participantes por desafio
@@ -721,20 +759,24 @@ Vídeo → IPFS → CID: QmXxx123...
 - Taxa do protocolo: 10%
 
 **Cálculo:**
+
 - 10 desafios × 50 participantes × R$ 5 = **R$ 2.500/mês**
 - **R$ 30.000/ano**
 
 **Cenário Otimista (Ano 2):**
+
 - 10.000 usuários ativos
 - 100 desafios/mês
 - 100 participantes por desafio
 - Taxa do protocolo: 10%
 
 **Cálculo:**
+
 - 100 desafios × 100 participantes × R$ 5 = **R$ 50.000/mês**
 - **R$ 600.000/ano**
 
 **Com Fase 2 (Mercado):**
+
 - 1% dos usuários apostam R$ 100/mês
 - 100 apostadores × R$ 100 = R$ 10.000/mês
 - Taxa: 5% = **R$ 500/mês**
@@ -743,15 +785,18 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 10.3 Custos Operacionais
 
 **Custos Fixos:**
+
 - Infraestrutura (IPFS, blockchain): ~R$ 1.000/mês
 - Desenvolvimento: ~R$ 20.000/mês
 - Marketing: ~R$ 10.000/mês
 
 **Custos Variáveis:**
+
 - Gas subsidy (inicial): ~R$ 5.000/mês (diminui com escala)
 - On-ramp fees: Margem já considerada na receita
 
 **Break-even:**
+
 - ~R$ 30.000/mês de receita
 - Atingível no cenário conservador (Ano 1)
 
@@ -762,18 +807,21 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 11.1 Segurança dos Contratos
 
 **Padrões Utilizados:**
+
 - ✅ OpenZeppelin Contracts (auditados pela comunidade)
 - ✅ ReentrancyGuard (previne ataques de reentrância)
 - ✅ AccessControl (controle granular de permissões)
 - ✅ Pausable (pode pausar em emergências)
 
 **Práticas de Segurança:**
+
 - ✅ Código público e auditável
 - ✅ Testes unitários extensivos
 - ✅ Deploy em testnet antes de mainnet
 - ✅ Verificação de contratos no PolygonScan
 
 **Auditoria Formal:**
+
 - ⏳ Planejada antes de deploy em mainnet
 - Empresas especializadas (Trail of Bits, OpenZeppelin, etc.)
 - Relatório público de auditoria
@@ -809,10 +857,12 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 12.1 Migração para DAO
 
 **Fase Atual:**
+
 - Owner: Safe multisig (múltiplos signatários)
 - Decisões: Requerem assinatura de maioria dos signatários
 
 **Fase Futura:**
+
 - Governança descentralizada via token holders
 - Propostas on-chain
 - Votação ponderada por quantidade de $WOD
@@ -821,6 +871,7 @@ Vídeo → IPFS → CID: QmXxx123...
 ### 12.2 Parâmetros Governáveis
 
 **Futuramente controlados por DAO:**
+
 - Entry fee mínimo/máximo
 - Stake mínimo de validadores
 - Percentual de consenso (atualmente 51%)
@@ -828,6 +879,7 @@ Vídeo → IPFS → CID: QmXxx123...
 - Distribuição de recompensas
 
 **Timelock:**
+
 - Mudanças críticas terão delay (ex: 7 dias)
 - Permite que comunidade reaja antes da execução
 
@@ -838,6 +890,7 @@ Vídeo → IPFS → CID: QmXxx123...
 WOD [X] PRO representa uma inovação fundamental no mercado de fitness e performance atlética. Ao combinar blockchain, IPFS, e validação descentralizada, o protocolo cria uma economia verdadeiramente descentralizada onde o esforço físico gera valor real e permanente.
 
 **Principais Conquistas:**
+
 - ✅ Primeira plataforma descentralizada de performance atlética
 - ✅ Sistema de validação por consenso transparente e auditável
 - ✅ Armazenamento permanente de provas de esforço
@@ -848,6 +901,7 @@ WOD [X] PRO representa uma inovação fundamental no mercado de fitness e perfor
 WOD [X] PRO visa se tornar a infraestrutura padrão para comprovação e monetização de desempenho atlético globalmente. Com expansão para outros esportes, integração com wearables, e um mercado de apostas descentralizado, o protocolo tem potencial para transformar completamente como atletas interagem com seu desempenho e como fãs participam do esporte.
 
 **Chamada para Ação:**
+
 - **Atletas**: Participem de desafios, validem performances, construam seu legado on-chain
 - **Validadores**: Façam stake, validem com qualidade, ganhem recompensas
 - **Desenvolvedores**: Contribuam com o código, sugiram melhorias, construam sobre o protocolo
@@ -861,6 +915,7 @@ WOD [X] PRO visa se tornar a infraestrutura padrão para comprovação e monetiz
 - GitHub: https://github.com/kauntdewn1/wod-eth
 
 **Documentação:**
+
 - Arquitetura: `docs/ARCHITECTURE.md`
 - Análise de Contratos: `docs/ANALISE_CONTRATOS.md`
 - FAQ: `docs/FAQ.md`

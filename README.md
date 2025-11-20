@@ -4,7 +4,7 @@
 
 O WOD [X] PRO transforma desempenho físico em valor digital perpétuo e auditável através de blockchain.
 
-**Domain**: `wod.eth` | **Token**: `WOD`
+**Domain**: `wodx.pro` | **Token**: `WOD`
 
 ## Arquitetura
 
