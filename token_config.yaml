@@ -1,0 +1,51 @@
+# Token Configuration Template - WOD X PRO
+
+token:
+  name: "WOD X PRO"
+  symbol: "WOD"
+  decimals: 18
+  total_supply: 0  # Supply inicial = 0 (mint progressivo conforme necessário)
+  max_supply: 1000000000  # 1 bilhão de tokens (hard cap)
+  standard: "ERC20"
+
+  # Contract Addresses
+  contracts:
+    main: "0x888476eA56322CFd5D08DFf8F247b1ab6bd6bB3e"  # Polygon Mainnet
+    arena: "0x9B2A87D4C28FA8aBEB14dE889764F66D54b775EE"
+    validator_registry: "0xC802ceb791831949504E8CE5982F6D9625eA6cC1"
+
+  # Network Information
+  network:
+    name: "Polygon Mainnet"
+    chain_id: 137
+    status: "unverified"  # ⚠️ OBSERVAÇÃO: Contratos deployados mas não verificados no Polygonscan. Verificação manual necessária (ver: wod-x-pro/VERIFICACAO_MANUAL_POLYGONSCAN.md)
+
+  # Metadata
+  metadata:
+    logo: "https://..."  # ⚠️ OBSERVAÇÃO: Logo não configurado ainda. Falta fazer upload para IPFS ou configurar URL
+    website: "https://wodx.pro"  # ⚠️ OBSERVAÇÃO: Domain planejado, ainda não implementado
+    description: "Protocolo Descentralizado de Performance Atlética - Transforma desempenho físico em valor digital permanente e auditável através de blockchain"
+
+# Project Status
+project_status:
+  contracts: "complete"  # ✅ Contratos deployados na Polygon Mainnet (2025-11-12)
+  tests: "passing"  # ✅ 4 testes passando (Arena.test.ts)
+  frontend: "in_progress"  # ⚠️ OBSERVAÇÃO: Build falhando devido a problema com WagmiProvider no Next.js. Código salvo mas precisa correção
+
+# Pending Tasks
+pending_tasks:
+  - "Verificar contratos no Polygonscan (verificação manual necessária - ver wod-x-pro/VERIFICACAO_MANUAL_POLYGONSCAN.md)"
+  - "Executar distribuição inicial de tokens via Safe multisig (ver WODToken_Initial_Distribution.json e wod-x-pro/scripts/initialDistribution.ts)"
+  - "Conceder MINTER_ROLE à Arena para permitir mint de recompensas de desafios"
+  - "Criar pool de liquidez no Uniswap (10% = 100M WOD conforme tokenomics)"
+  - "Configurar logo do token (upload para IPFS ou configurar URL)"
+  - "Atualizar metadata no Polygonscan (logo, website, descrição) após verificação"
+  - "Corrigir build do frontend (problema com WagmiProvider - WagmiProviderNotFoundError)"
+  - "Adicionar a CoinGecko (requer verificação de contratos e liquidez mínima)"
+  - "Adicionar a CoinMarketCap (requer verificação de contratos e liquidez mínima)"
+  - "Configurar domínios ENS (wod.eth) e website (wodx.pro)"
+
+# Repository (opcional)
+repository:
+  url: "https://github.com/kauntdewn1/wod-eth"
+

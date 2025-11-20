@@ -4,17 +4,18 @@
 
 **Versão 1.0** | Novembro 2024
 
-**Domain**: `wod.eth` | **Token**: `$WOD`
+**Domain**: `wod.eth` e `wodx.pro` | **Token**: `$WOD`
 
 ---
 
 ## 📋 Resumo Executivo
 
-WOD [X] PRO é um protocolo descentralizado construído em blockchain que transforma desempenho físico em valor digital permanente e auditável. Através de smart contracts na rede Polygon, o protocolo permite que atletas participem de desafios competitivos, submetam provas de esforço (vídeos armazenados em IPFS), e recebam recompensas em tokens $WOD baseadas em validação por consenso descentralizado.
+WOD [X] PRO é um protocolo descentralizado construído em blockchain que transforma desempenho físico em valor digital permanente e auditável. Através de smart contracts na rede Polygon POS, o protocolo permite que atletas participem de desafios competitivos, submetam provas de esforço (vídeos armazenados em IPFS), e recebam recompensas em tokens $WOD baseadas em validação por consenso descentralizado.
 
 O protocolo elimina intermediários, garante transparência total, e cria uma economia verdadeiramente descentralizada onde o esforço físico gera valor real. Utilizando tecnologias como Account Abstraction (Alchemy Account Kit), IPFS para armazenamento permanente, e smart contracts auditáveis, o WOD [X] PRO oferece uma experiência sem fricção para atletas enquanto mantém a soberania e permanência dos dados.
 
 **Principais Diferenciais:**
+
 - ✅ Primeira plataforma descentralizada de performance atlética
 - ✅ Validação por consenso (51% dos validadores)
 - ✅ Armazenamento permanente em IPFS
@@ -30,22 +31,26 @@ O protocolo elimina intermediários, garante transparência total, e cria uma ec
 O mercado de fitness e performance atlética enfrenta desafios estruturais que limitam a capacidade de atletas monetizarem e comprovarem seu desempenho:
 
 **1. Centralização e Dependência de Plataformas**
+
 - Dados de performance ficam presos em servidores privados
 - Plataformas podem ser desligadas, resultando em perda permanente de histórico
 - Algoritmos de redes sociais controlam visibilidade e monetização
 - Intermediários capturam valor sem retornar aos criadores
 
 **2. Falta de Prova Permanente**
+
 - Não existe forma auditável e permanente de comprovar desempenho histórico
 - Vídeos podem ser deletados, contas podem ser banidas
 - Histórico de treinos não tem valor de mercado
 
 **3. Barreiras Geográficas e Financeiras**
+
 - Competições físicas têm custos altos e barreiras geográficas
 - Poucas oportunidades para atletas amadores monetizarem esforço
 - Sistema de recompensas baseado em "pontos" sem valor real
 
 **4. Falta de Transparência**
+
 - Resultados de competições podem ser contestados
 - Processo de validação não é transparente
 - Distribuição de prêmios depende de intermediários
@@ -53,12 +58,14 @@ O mercado de fitness e performance atlética enfrenta desafios estruturais que l
 ### 1.2 A Oportunidade
 
 O mercado global de fitness está em crescimento constante:
+
 - **50+ milhões** de pessoas praticam exercícios regularmente no Brasil
 - **Mercado global** de fitness tech cresce ~15% ao ano
 - **CrossFit, HIIT, Funcional** são segmentos em expansão
 - **Apostas esportivas** movimentam bilhões globalmente
 
 A tecnologia blockchain oferece a infraestrutura perfeita para resolver esses problemas:
+
 - **Descentralização**: Protocolo independente de servidores centrais
 - **Permanência**: Dados armazenados de forma imutável
 - **Transparência**: Todas as regras e transações são públicas
@@ -82,18 +89,21 @@ WOD [X] PRO é um protocolo descentralizado que permite:
 O protocolo opera em dois níveis distintos:
 
 #### Nível 1: Treinos Diários (Off-Chain)
+
 - **Armazenamento**: Vídeos em IPFS via Lighthouse.storage
 - **Custo**: Zero (sem transações blockchain)
 - **Propósito**: Histórico pessoal, tracking de progresso
 - **Sync Opcional**: Pode ser sincronizado on-chain quando necessário
 
 #### Nível 2: A Arena (On-Chain)
+
 - **Armazenamento**: CIDs registrados em smart contracts
 - **Custo**: Gas fees (subsidiados via Account Abstraction)
 - **Propósito**: Desafios competitivos com entry fee e prize pool
 - **Validação**: Consenso descentralizado obrigatório
 
 Esta arquitetura garante:
+
 - ✅ UX fluida para treinos diários (sem fricção)
 - ✅ Valor econômico apenas em desafios competitivos
 - ✅ Histórico permanente mesmo para treinos off-chain
@@ -106,24 +116,28 @@ Esta arquitetura garante:
 ### 3.1 Stack Tecnológica
 
 **Blockchain:**
-- **Rede**: Polygon (L2 Ethereum)
+
+- **Rede**: Polygon POS
 - **Linguagem**: Solidity ^0.8.20
 - **Padrões**: OpenZeppelin Contracts
 - **Custos**: ~$0.01 por transação
 
 **Frontend:**
+
 - **Framework**: Next.js 14 (React, TypeScript)
 - **Wallet**: Alchemy Account Kit (Account Abstraction)
 - **Login**: Social login (Google, e-mail)
 - **UX**: Zero conhecimento de cripto necessário
 
 **Armazenamento:**
+
 - **IPFS**: Lighthouse.storage (IPFS + Filecoin)
 - **Permanência**: Garantida por Filecoin
 - **Acesso**: Via CID (Content Identifier)
 
 **On-Ramp:**
-- **Provedor**: Alchemy Pay
+
+- **Provedor**: FlowPay
 - **Método**: PIX (Brasil)
 - **Conversão**: Fiat → $WOD automático
 
@@ -136,11 +150,13 @@ O protocolo consiste em três contratos principais:
 **Tipo**: ERC20 Token
 
 **Funções Principais:**
+
 - `mint(address to, uint256 amount)`: Cria novos tokens (apenas owner)
 - `burn(uint256 amount)`: Queima tokens do próprio endereço
 - `transfer/transferFrom`: Transferências padrão ERC20
 
 **Tokenomics:**
+
 - **Max Supply**: 1.000.000.000 WOD (hard cap)
 - **Distribuição**:
   - 30% - Tesouraria do Protocolo
@@ -151,6 +167,7 @@ O protocolo consiste em três contratos principais:
   - 10% - Ecossistema / DAO
 
 **Segurança:**
+
 - OpenZeppelin AccessControl
 - Pausable (pode pausar em emergências)
 - Apenas owner pode mint (Safe multisig)
@@ -160,6 +177,7 @@ O protocolo consiste em três contratos principais:
 **Propósito**: Registro de validadores com sistema de stake
 
 **Funções Principais:**
+
 - `registerValidator(uint256 stakeAmount)`: Registra novo validador com stake mínimo
 - `updateStake(uint256 additionalStake)`: Aumenta stake existente
 - `unregisterValidator()`: Remove validador e retorna stake
@@ -168,11 +186,13 @@ O protocolo consiste em três contratos principais:
 - `getValidators()`: Retorna lista de validadores
 
 **Mecânica de Stake:**
+
 - **Stake Mínimo**: 1.000 WOD (configurável pelo owner)
 - **Propósito**: Garantir comprometimento e qualidade das validações
 - **Retorno**: Stake pode ser recuperado ao desregistrar
 
 **Estrutura de Dados:**
+
 ```solidity
 struct Validator {
     address validatorAddress;
@@ -210,6 +230,7 @@ struct Validator {
    - Distribui prize pool automaticamente para vencedores
 
 **Constantes:**
+
 - `VALIDATION_DEADLINE`: 7 dias após endTime do desafio
 - `MIN_CONSENSUS_PERCENT`: 51% (maioria dos validadores deve aprovar)
 - `VALIDATION_FEE_PERCENT`: 10% do prize pool para validadores (futuro)
@@ -283,18 +304,21 @@ Após deadline (endTime + 7 dias) → Arena.resolveChallenge(challengeId)
 ### 3.4 Segurança e Descentralização
 
 **Princípios de Segurança:**
+
 - ✅ **OpenZeppelin Contracts**: Padrão da indústria
 - ✅ **ReentrancyGuard**: Previne ataques de reentrância
 - ✅ **AccessControl**: Controle granular de permissões
 - ✅ **Pausable**: Pode pausar em emergências (apenas owner)
 
 **Descentralização:**
+
 - ✅ **Zero Trust**: Nenhuma ação requer confiança em servidor central
 - ✅ **Transparência**: Todas as regras estão no código dos contratos
 - ✅ **Auditabilidade**: Qualquer pessoa pode verificar lógica e histórico
 - ✅ **Imutabilidade**: Regras não podem ser alteradas sem consenso (apenas owner pode mudar parâmetros)
 
 **Governança Futura:**
+
 - Migração para DAO (Decentralized Autonomous Organization)
 - Token holders votam em mudanças de parâmetros
 - Owner atual (Safe multisig) será substituído por governança on-chain
@@ -321,11 +345,13 @@ Após deadline (endTime + 7 dias) → Arena.resolveChallenge(challengeId)
 ### 4.2 Mecânica de Emissão
 
 **Mint Progressivo:**
+
 - Tokens de recompensa são mintados conforme desafios são resolvidos
 - Arena.sol pode ter MINTER_ROLE para mintar recompensas automaticamente
 - Ou mint manual via Safe multisig após resolução de desafio
 
 **Queima (Burn):**
+
 - Qualquer holder pode queimar seus próprios tokens
 - Reduz supply total (deflacionário)
 - Pode ser usado para ajustar economia do protocolo
@@ -616,7 +642,7 @@ Vídeo → IPFS → CID: QmXxx123...
 ### Fase 2: Crescimento (Q2 - Q3 2025)
 
 **Planejado:**
-- [ ] Deploy em mainnet (Polygon)
+- [ ] Deploy em mainnet (Polygon POS)
 - [ ] Marketing para comunidade CrossFit/fitness
 - [ ] Sistema de oráculo (preparação para Fase 2: Mercado)
 - [ ] Dashboard de validadores aprimorado
@@ -842,6 +868,7 @@ WOD [X] PRO visa se tornar a infraestrutura padrão para comprovação e monetiz
 
 **Contatos:**
 - Domain ENS: `wod.eth`
+- Domain: `wodx.pro`
 - Email: [a definir]
 
 **Tecnologias:**

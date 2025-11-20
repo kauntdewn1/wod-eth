@@ -40,6 +40,7 @@ POLYGON_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/YOUR_API_KEY
 ```
 
 **Como obter RPC URL:**
+
 - **Alchemy**: https://www.alchemy.com/ → Criar app → Polygon → Copiar HTTP URL
 - **Infura**: https://infura.io/ → Criar projeto → Polygon → Copiar endpoint
 
@@ -53,12 +54,14 @@ SAFE_ADDRESS=0xYourSafeAddressHere
 ```
 
 **Por que usar Safe?**
+
 - ✅ Controle multisig (múltiplas assinaturas necessárias)
 - ✅ Maior segurança institucional
 - ✅ O ownership do token será transferido automaticamente após deploy
 - ✅ **Recomendado para produção**
 
 **Como criar um Safe:**
+
 1. Acesse [Safe Wallet](https://safe.global/)
 2. Conecte sua wallet
 3. Crie um novo Safe na **Polygon Mainnet**
@@ -192,6 +195,7 @@ npm run transfer-ownership
 ```
 
 Isso vai:
+
 - Conectar ao contrato `WODToken` deployado
 - Verificar o owner atual
 - Transfere o ownership para o `SAFE_ADDRESS` configurado
